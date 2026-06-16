@@ -221,11 +221,13 @@ class FoundEngine {
       el.innerHTML = this._defaultTemplate(slide);
     }
 
-    // Animate children in after mount
+    // Animate children in after mount — stagger delays, then trigger via parent class
+    el.querySelectorAll('[data-animate]').forEach((child, i) => {
+      child.style.animationDelay = `${i * 80}ms`;
+    });
     requestAnimationFrame(() => {
-      el.querySelectorAll('[data-animate]').forEach((child, i) => {
-        child.style.animationDelay = `${i * 80}ms`;
-        child.classList.add('anim-in');
+      requestAnimationFrame(() => {
+        el.classList.add('anim-in');
       });
     });
 
