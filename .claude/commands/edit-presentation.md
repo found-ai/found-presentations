@@ -1,1 +1,1 @@
-Read the full instructions in .claude/agents/edit-presentation.md and follow them exactly. Start by reading presentations/platform-walkthrough/script.json and printing the slide manifest.
+Read the full instructions in .claude/agents/edit-presentation.md and follow them exactly. Start by listing all directories under presentations/ to show available presentations, then ask which one to edit before reading any script.json.
