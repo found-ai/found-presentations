@@ -1,0 +1,274 @@
+{
+  "meta": {
+    "title": "Platform Walkthrough",
+    "audience": "design-partner",
+    "style": "cinematic",
+    "transition": "fade",
+    "date": "2026-06-16"
+  },
+  "slides": [
+
+    {
+      "id": "cover",
+      "template": "hero",
+      "eyebrow": "Found AI · Platform Walkthrough",
+      "headline": "Meet customers where they are.<br>Move them where they need to go.",
+      "subhead": "A walk through the Found journey — Capture, Diagnose, Enhance, Reinvent — and what we build at each phase.",
+      "badge": "2026-06-16"
+    },
+
+    {
+      "id": "phases-overview",
+      "template": "phases-map",
+      "eyebrow": "The Found Journey",
+      "headline": "The phases — the journey, mapped.",
+      "subhead": "One substrate, four positions. Not every customer starts at phase one — we meet you where you are.",
+      "phases": [
+        {
+          "number": "PHASE 01",
+          "name": "Capture",
+          "verb": "UNDERSTAND",
+          "active": true,
+          "rows": [
+            { "label": "Customer", "value": "Works as normal · we record" },
+            { "label": "Value to them", "value": "Tribal knowledge → engine" },
+            { "label": "We build", "value": "Capture pipeline" }
+          ],
+          "stack": "L1 · L2 — ingest → graph"
+        },
+        {
+          "number": "PHASE 02",
+          "name": "Diagnose",
+          "verb": "ANALYZE",
+          "active": true,
+          "rows": [
+            { "label": "Customer", "value": "Reads the readout · their data" },
+            { "label": "Value to them", "value": "Pain → leakage → dollars" },
+            { "label": "We build", "value": "Backtest engine" }
+          ],
+          "stack": "L2 · L3 — engine + IPs"
+        },
+        {
+          "number": "PHASE 03",
+          "name": "Enhance",
+          "verb": "ACTIVATE",
+          "active": true,
+          "rows": [
+            { "label": "Customer", "value": "Judges artifacts · confirm / reject" },
+            { "label": "Value to them", "value": "Work-finding value loop" },
+            { "label": "We build", "value": "Analyst + artifact toolbelt" }
+          ],
+          "stack": "L3 – L5 — analyst → surface"
+        },
+        {
+          "number": "PHASE 04",
+          "name": "Reinvent",
+          "verb": "COMPOUND",
+          "active": false,
+          "rows": [
+            { "label": "Customer", "value": "Grants autonomy per workflow" },
+            { "label": "Value to them", "value": "The workflow changes for the better" },
+            { "label": "We build", "value": "Trust harness" }
+          ],
+          "stack": "L4 · L5 — embedded"
+        }
+      ],
+      "footnote": "The human stays in the lead until the engine has earned the right to run without them."
+    },
+
+    {
+      "id": "phase1-intro",
+      "template": "phase-intro",
+      "phase_label": "Phase One",
+      "phase_number": "PHASE 01",
+      "headline": "Capture",
+      "verb": "UNDERSTAND",
+      "body": "Your team works as normal. We record what happens, redact what's sensitive, and build the decision graph that becomes your engine.",
+      "layers": [
+        { "id": "l1", "label": "L1 Data Core" },
+        { "id": "l2", "label": "L2 Intelligence Engine" }
+      ]
+    },
+
+    {
+      "id": "capture-flow",
+      "template": "flow",
+      "eyebrow": "Phase 01 · Capture",
+      "headline": "How we build the graph — locally, nothing sensitive leaves.",
+      "nodes": [
+        { "style": "default", "title": "Operator", "sub": "works as normal" },
+        { "style": "dark", "title": "Record", "sub": "screen + audio" },
+        { "style": "dark", "title": "Redact", "label": "LOCAL", "sub": "PHI masked" },
+        { "style": "dark", "title": "Digest", "sub": "dedup · Whisper" },
+        { "style": "green", "title": "Decision Graph", "sub": "tribal knowledge, queryable" }
+      ],
+      "callout": "L1 · L2 active — ingest → graph · everything stays local through redaction"
+    },
+
+    {
+      "id": "capture-demo",
+      "template": "video-full",
+      "eyebrow": "Phase 01 · Capture · Demo",
+      "headline": "Workflow capture in action.",
+      "caption": "The capture pipeline records, redacts PHI locally, digests via Whisper, and writes back to the decision graph — all without sensitive data leaving the environment.",
+      "video": null,
+      "video_label": "Capture pipeline demo — workflow recording → graph"
+    },
+
+    {
+      "id": "capture-value",
+      "template": "split",
+      "eyebrow": "Phase 01 · Value",
+      "headline": "Tribal knowledge becomes a queryable engine.",
+      "body": "Every workflow your team runs — pricing a case, reviewing a contract, routing a request — becomes a node in your intelligence graph. The wedge finds the pain. The graph compounds it.",
+      "bullets": [
+        "Works on day one with no process change required",
+        "PHI redaction happens locally — nothing sensitive leaves your environment",
+        "Each capture deepens L2: ontology, entity resolution, bi-temporal trace",
+        "The graph you build in Capture funds everything in Diagnose"
+      ],
+      "image": null
+    },
+
+    {
+      "id": "phase2-intro",
+      "template": "phase-intro",
+      "phase_label": "Phase Two",
+      "phase_number": "PHASE 02",
+      "headline": "Diagnose",
+      "verb": "ANALYZE",
+      "body": "You may already have workflows captured — or we connect directly to your data warehouse. Either way, we backtest and show you what you missed.",
+      "layers": [
+        { "id": "l2", "label": "L2 Intelligence Engine" },
+        { "id": "default", "label": "L3 Inference" }
+      ]
+    },
+
+    {
+      "id": "diagnose-flow",
+      "template": "flow",
+      "eyebrow": "Phase 02 · Diagnose",
+      "headline": "One pull. Priced vs what you missed.",
+      "nodes": [
+        { "style": "dark", "title": "Data Warehouse", "sub": "one schema-first pull" },
+        { "style": "green", "title": "Engine Seed", "sub": "ontology + capture graph" },
+        { "style": "dashed", "title": "Backtest + Initial Worklist", "sub": "missed $ itemized · actionable now" },
+        { "style": "dark", "title": "Priced vs $X", "sub": "% of savings" }
+      ],
+      "callout": "L2 · L3 active — the backtest engine runs your history against the intelligence graph"
+    },
+
+    {
+      "id": "diagnose-demo",
+      "template": "video-full",
+      "eyebrow": "Phase 02 · Diagnose · Demo",
+      "headline": "The backtest: what you missed, priced.",
+      "caption": "Connect your data warehouse, seed the engine, and generate a worklist of missed revenue and savings opportunities — quantified against your actual history.",
+      "video": null,
+      "video_label": "Diagnose demo — data connect → backtest → priced worklist"
+    },
+
+    {
+      "id": "phase3-intro",
+      "template": "phase-intro",
+      "phase_label": "Phase Three",
+      "phase_number": "PHASE 03",
+      "headline": "Enhance",
+      "verb": "ACTIVATE",
+      "body": "The analyst surfaces artifacts. Your team judges them — confirm, reject, edit. Every judgment makes the next one sharper. The loop runs continuously.",
+      "layers": [
+        { "id": "default", "label": "L3 Inference" },
+        { "id": "default", "label": "L4 Execution" },
+        { "id": "default", "label": "L5 Experience" }
+      ]
+    },
+
+    {
+      "id": "enhance-flow",
+      "template": "flow",
+      "eyebrow": "Phase 03 · Enhance",
+      "headline": "The value loop — every judgment compounds.",
+      "nodes": [
+        { "style": "green", "title": "Analyst", "sub": "harnessed · engine-backed" },
+        { "style": "dashed", "title": "Artifact", "sub": "two-way · in-system" },
+        { "style": "default", "title": "User", "sub": "confirm · reject" },
+        { "style": "green", "title": "Engine Compounds", "sub": "judgments → graph nodes" }
+      ],
+      "callout": "Engine compounds · regenerates and re-ranks the analyst's worklist · every judgment makes the next one sharper"
+    },
+
+    {
+      "id": "enhance-demo",
+      "template": "video-full",
+      "eyebrow": "Phase 03 · Enhance · Demo",
+      "headline": "The analyst worklist — work-finding value loop.",
+      "caption": "The harnessed analyst surfaces prioritized artifacts. Each confirm or reject writes provenance back to the graph. The worklist re-ranks in real time. The human stays in the lead.",
+      "video": null,
+      "video_label": "Enhance demo — analyst worklist → artifact → judgment → graph"
+    },
+
+    {
+      "id": "principles-overview",
+      "template": "principles",
+      "eyebrow": "Five Principles · How the platform is built",
+      "headline": "What we take in, run through, and ship.",
+      "items": [
+        {
+          "name": "Value loops",
+          "body": "The atomic unit of work. An event fires an analyst, it generates an artifact, a human confirms or rejects, the judgment writes back as provenance, the artifact regenerates. <strong>The surface is swappable — the loop is the product.</strong>",
+          "tags": [
+            { "label": "L4·L5", "style": "dark" },
+            { "label": "DOGFOOD", "style": "green" }
+          ]
+        },
+        {
+          "name": "Agentic distillation",
+          "body": "Use AI to extract structure and determinism out of raw, unstructured signal — shrink-distill the context down to what's load-bearing, then bind it to the graph.",
+          "tags": [
+            { "label": "MARQUEE", "style": "dark" },
+            { "label": "L2", "style": "green" }
+          ]
+        },
+        {
+          "name": "Harnessing context",
+          "body": "Don't stuff a prompt — compose the right context from the graph for each inference, scoped and provenance-bound. The graph is the memory; the composer decides what reaches the model and why.",
+          "tags": [
+            { "label": "L3", "style": "green" },
+            { "label": "L3", "style": "default" }
+          ]
+        },
+        {
+          "name": "Control & tool routing",
+          "body": "<strong>Capability-token RBAC</strong> gates what any agent can touch at the field level; routing decides which model and which tool, predictably. This is the harness that earns autonomy.",
+          "tags": [
+            { "label": "L2", "style": "green" },
+            { "label": "L4", "style": "dark" }
+          ]
+        },
+        {
+          "name": "Agentic patterns",
+          "body": "The orchestration shapes we lead on: human-in-the-lead, harnessed-not-autonomous, and — the frontier we own — <strong>collaborative loops</strong> where conflicting human feedback raises a merge conflict and the agent calls the meeting.",
+          "tags": [
+            { "label": "FRONTIER", "style": "green" },
+            { "label": "RAMP", "style": "default" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "cta",
+      "template": "cta",
+      "eyebrow": "What comes next",
+      "headline": "Where do you sit on the journey?",
+      "subhead": "We meet you at your current phase and move you forward. Capture builds the graph. Diagnose prices the gap. Enhance closes it — continuously.",
+      "steps": [
+        "Map your current phase",
+        "Identify the first workflow",
+        "Run the diagnostic"
+      ],
+      "url": "content.foundai.cloud"
+    }
+
+  ]
+}

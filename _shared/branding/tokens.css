@@ -1,0 +1,90 @@
+/* ============================================================
+   FOUND AI — Design Tokens
+   Derived from Found OS branding artifacts
+   ============================================================ */
+
+:root {
+  /* ── Color ─────────────────────────────────────────── */
+
+  /* Neutrals */
+  --color-bg:          #F0EDE6;   /* warm parchment — primary bg */
+  --color-bg-card:     #FFFFFF;   /* card surfaces */
+  --color-bg-dark:     #1A1A18;   /* near-black — hero panels, dark slides */
+  --color-bg-mid:      #2C2C28;   /* secondary dark */
+
+  /* Brand */
+  --color-green:       #7DB896;   /* Found signal green — L2 highlight, accents */
+  --color-green-light: #A8D4BC;   /* lighter tint for subtle fills */
+  --color-green-dark:  #4A8C65;   /* deeper for borders, active states */
+
+  /* Text */
+  --color-text-primary:   #1A1A18;
+  --color-text-secondary: #666660;
+  --color-text-muted:     #999993;
+  --color-text-inverse:   #F0EDE6;
+  --color-text-green:     #4A8C65;
+
+  /* Borders */
+  --color-border:         #DEDAD2;
+  --color-border-dark:    #3A3A35;
+  --color-border-green:   #7DB896;
+
+  /* ── Typography ─────────────────────────────────────── */
+
+  /* Display: tight, technical serif for headlines */
+  --font-display: 'DM Serif Display', 'Georgia', serif;
+
+  /* Body: clean geometric sans */
+  --font-body: 'DM Sans', 'Inter', -apple-system, sans-serif;
+
+  /* Mono: for labels, tags, technical strings */
+  --font-mono: 'DM Mono', 'JetBrains Mono', 'Menlo', monospace;
+
+  /* Scale */
+  --text-xs:   0.6875rem;   /* 11px — labels, tags */
+  --text-sm:   0.8125rem;   /* 13px — captions, secondary */
+  --text-base: 1rem;        /* 16px — body */
+  --text-lg:   1.25rem;     /* 20px — lead */
+  --text-xl:   1.75rem;     /* 28px — section heads */
+  --text-2xl:  2.5rem;      /* 40px — slide titles */
+  --text-3xl:  3.5rem;      /* 56px — hero headlines */
+  --text-4xl:  5rem;        /* 80px — full-bleed hero */
+
+  /* Weight */
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Tracking */
+  --tracking-tight:  -0.03em;
+  --tracking-normal: -0.01em;
+  --tracking-wide:    0.08em;
+  --tracking-widest:  0.15em;
+
+  /* ── Spacing ─────────────────────────────────────────── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* ── Radii ───────────────────────────────────────────── */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+
+  /* ── Motion ──────────────────────────────────────────── */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-expo:   cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:  200ms;
+  --duration-base:  400ms;
+  --duration-slow:  700ms;
+  --duration-crawl: 1200ms;
+}

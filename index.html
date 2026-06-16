@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Found AI — Presentations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./_shared/branding/tokens.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100vh;
+      background: var(--color-bg-dark);
+      font-family: var(--font-body);
+      color: var(--color-text-inverse);
+      -webkit-font-smoothing: antialiased;
+    }
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+    .brand {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-widest);
+      color: rgba(240,237,230,0.3);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 400;
+      letter-spacing: var(--tracking-tight);
+      color: var(--color-text-inverse);
+      margin-bottom: 16px;
+      line-height: 1.05;
+    }
+    .subtitle {
+      font-size: var(--text-base);
+      color: rgba(240,237,230,0.45);
+      line-height: 1.6;
+      max-width: 500px;
+      margin-bottom: 64px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--color-border-dark);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 200ms, border-color 200ms;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(125,184,150,0.3);
+    }
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      color: var(--color-green);
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      letter-spacing: var(--tracking-tight);
+      line-height: 1.1;
+    }
+    .card-desc {
+      font-size: var(--text-sm);
+      color: rgba(240,237,230,0.45);
+      line-height: 1.6;
+    }
+    .card-meta {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: rgba(240,237,230,0.25);
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--color-border-dark);
+    }
+    .footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border-dark);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: rgba(240,237,230,0.2);
+      letter-spacing: var(--tracking-wide);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="brand">Found AI · Presentations</div>
+    <h1>The Found<br>knowledge base.</h1>
+    <p class="subtitle">Hosted presentations for partners, design partners, and internal use. Each deck is self-contained and shareable via URL.</p>
+
+    <div class="grid">
+      <a class="card" href="./presentations/platform-walkthrough/">
+        <div class="card-label">Platform · Walkthrough</div>
+        <div class="card-title">Platform Walkthrough</div>
+        <div class="card-desc">The Found journey — Capture, Diagnose, Enhance, Reinvent. Meet you where you are, move you where you need to go.</div>
+        <div class="card-meta">13 slides · 2026-06-16 · design-partner</div>
+      </a>
+
+      <!-- Future presentations auto-generated here -->
+    </div>
+
+    <div class="footer">content.foundai.cloud · found-presentations · 2026</div>
+  </div>
+</body>
+</html>
