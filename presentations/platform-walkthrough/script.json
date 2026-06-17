@@ -7,75 +7,127 @@
     "date": "2026-06-16"
   },
   "slides": [
-
     {
       "id": "cover",
       "template": "hero",
       "eyebrow": "Found AI · Platform Walkthrough",
-      "headline": "Meet customers where they are.<br>Move them where they need to go.",
-      "subhead": "A walk through the Found journey — Capture, Diagnose, Enhance, Reinvent — and what we build at each phase.",
+      "headline": "Meet you where you are.<br>Move you where you need to go.",
+      "subhead": "One workflow at a time — understand, diagnose, enhance, reinvent. You stay in the lead until the system earns the right to run on its own.",
       "badge": "2026-06-16"
     },
-
     {
-      "id": "phases-overview",
-      "template": "phases-map",
-      "eyebrow": "The Found Journey",
-      "headline": "The phases — the journey, mapped.",
-      "subhead": "One substrate, four positions. Not every customer starts at phase one — we meet you where you are.",
-      "phases": [
+      "id": "journey-wedge",
+      "template": "wedge",
+      "eyebrow": "The Journey · How we land and expand",
+      "headline": "The journey <span class=\"hl\">is the wedge.</span>",
+      "bars": [
         {
-          "number": "PHASE 01",
-          "name": "Capture",
-          "verb": "UNDERSTAND",
-          "active": true,
-          "rows": [
-            { "label": "Customer", "value": "Works as normal · we record" },
-            { "label": "Value to them", "value": "Tribal knowledge → engine" },
-            { "label": "We build", "value": "Capture pipeline" }
-          ],
-          "stack": "L1 · L2 — ingest → graph"
+          "n": "01",
+          "title": "Workflow Capture",
+          "height": 28
         },
         {
-          "number": "PHASE 02",
-          "name": "Diagnose",
-          "verb": "ANALYZE",
-          "active": true,
-          "rows": [
-            { "label": "Customer", "value": "Reads the readout · their data" },
-            { "label": "Value to them", "value": "Pain → leakage → dollars" },
-            { "label": "We build", "value": "Backtest engine" }
-          ],
-          "stack": "L2 · L3 — engine + IPs"
+          "n": "02",
+          "title": "Connect Data",
+          "height": 37
         },
         {
-          "number": "PHASE 03",
-          "name": "Enhance",
-          "verb": "ACTIVATE",
-          "active": true,
-          "rows": [
-            { "label": "Customer", "value": "Judges artifacts · confirm / reject" },
-            { "label": "Value to them", "value": "Work-finding value loop" },
-            { "label": "We build", "value": "Analyst + artifact toolbelt" }
-          ],
-          "stack": "L3 – L5 — analyst → surface"
+          "n": "03",
+          "title": "Run Diagnostic",
+          "height": 46
         },
         {
-          "number": "PHASE 04",
-          "name": "Reinvent",
-          "verb": "COMPOUND",
-          "active": false,
-          "rows": [
-            { "label": "Customer", "value": "Grants autonomy per workflow" },
-            { "label": "Value to them", "value": "The workflow changes for the better" },
-            { "label": "We build", "value": "Trust harness" }
-          ],
-          "stack": "L4 · L5 — embedded"
+          "n": "04",
+          "title": "Backtest Delivery",
+          "height": 55
+        },
+        {
+          "n": "05",
+          "title": "Active Worklist",
+          "height": 64
+        },
+        {
+          "n": "06",
+          "title": "Workflow Enhance",
+          "height": 75
+        },
+        {
+          "n": "07",
+          "title": "Intel Engine",
+          "height": 82,
+          "ghost": true
+        },
+        {
+          "n": "08",
+          "title": "Agentic Flows",
+          "height": 90,
+          "ghost": true
+        },
+        {
+          "n": "09",
+          "title": "Self-improving Loops",
+          "height": 97,
+          "ghost": true
         }
       ],
-      "footnote": "The human stays in the lead until the engine has earned the right to run without them."
+      "markers": [
+        {
+          "title": "Opportunity, sized.",
+          "after": 3,
+          "height": 70
+        },
+        {
+          "title": "Value + ROI, proven.",
+          "after": 5,
+          "height": 88
+        },
+        {
+          "title": "Scaled Outcomes",
+          "after": 8,
+          "height": 100,
+          "end": true
+        }
+      ],
+      "phases": [
+        {
+          "number": "Phase 01",
+          "name": "Capture",
+          "verb": "understand",
+          "span": 2,
+          "you": "Work as normal",
+          "get": "We find the pain",
+          "platform": "Workflow Audit"
+        },
+        {
+          "number": "Phase 02",
+          "name": "Diagnose",
+          "verb": "analyze",
+          "span": 2,
+          "you": "Read the readout",
+          "get": "Leakage → dollars",
+          "platform": "Backtest"
+        },
+        {
+          "number": "Phase 03",
+          "name": "Enhance",
+          "verb": "activate",
+          "span": 2,
+          "you": "Your team acts",
+          "get": "Always-on worklist",
+          "platform": "Active Worklists"
+        },
+        {
+          "number": "Phase 04",
+          "name": "Reinvent",
+          "verb": "compound",
+          "span": 3,
+          "ghost": true,
+          "you": "Grant autonomy",
+          "get": "The workflow gets better",
+          "platform": "Intelligence Engine"
+        }
+      ]
     },
-
     {
       "id": "phase1-intro",
       "template": "phase-intro",
@@ -83,53 +135,49 @@
       "phase_number": "PHASE 01",
       "headline": "Capture",
       "verb": "UNDERSTAND",
-      "body": "Your team works as normal. We record what happens, redact what's sensitive, and build the decision graph that becomes your engine.",
+      "body": "Your team works as normal. We record what happens, redact what's sensitive locally, and distill it into the decision graph that becomes your engine.",
       "layers": [
-        { "id": "l1", "label": "L1 Data Core" },
-        { "id": "l2", "label": "L2 Intelligence Engine" }
+        {
+          "id": "l1",
+          "label": "L1 Data Core"
+        },
+        {
+          "id": "l2",
+          "label": "L2 Intelligence Engine"
+        }
       ]
     },
-
     {
       "id": "capture-flow",
-      "template": "flow",
-      "eyebrow": "Phase 01 · Capture",
-      "headline": "How we build the graph — locally, nothing sensitive leaves.",
-      "nodes": [
-        { "style": "default", "title": "Operator", "sub": "works as normal" },
-        { "style": "dark", "title": "Record", "sub": "screen + audio" },
-        { "style": "dark", "title": "Redact", "label": "LOCAL", "sub": "PHI masked" },
-        { "style": "dark", "title": "Digest", "sub": "dedup · Whisper" },
-        { "style": "green", "title": "Decision Graph", "sub": "tribal knowledge, queryable" }
-      ],
-      "callout": "L1 · L2 active — ingest → graph · everything stays local through redaction"
+      "template": "diagram",
+      "eyebrow": "Phase 01 · Capture · The machinery",
+      "headline": "Record locally. Distill once. Fan out to graph and backtest.",
+      "svg": "<svg viewBox=\"0 0 1180 440\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"cf-flow\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L7,3 L0,6 Z\" fill=\"#999993\"/></marker><marker id=\"cf-eng\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L7,3 L0,6 Z\" fill=\"#4A8C65\"/></marker></defs><rect x=\"40\" y=\"192\" width=\"118\" height=\"56\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#DEDAD2\" stroke-width=\"1.3\"/><circle cx=\"62\" cy=\"210\" r=\"6.5\" fill=\"none\" stroke=\"#1A1A18\" stroke-width=\"1.4\"/><path d=\"M54,228 a8,8 0 0 1 16,0\" fill=\"none\" stroke=\"#1A1A18\" stroke-width=\"1.4\"/><text x=\"106\" y=\"216\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Operator</text><text x=\"100\" y=\"233\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#999993\">works as normal</text><rect x=\"208\" y=\"192\" width=\"124\" height=\"56\" rx=\"10\" fill=\"#1A1A18\"/><text x=\"270\" y=\"216\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Record</text><text x=\"270\" y=\"233\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#9C9A8E\">screen + audio</text><path d=\"M158,220 L204,220\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.6\" marker-end=\"url(#cf-flow)\"/><path d=\"M332,220 L396,220\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.6\" marker-end=\"url(#cf-flow)\"/><path d=\"M400,120 L612,120 L612,196 M612,248 L612,320 L400,320 L400,120\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\"/><text x=\"404\" y=\"112\" text-anchor=\"start\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#999993\" letter-spacing=\"1.2\">LOCAL · NOTHING SENSITIVE LEAVES</text><rect x=\"424\" y=\"138\" width=\"150\" height=\"54\" rx=\"10\" fill=\"#1A1A18\"/><text x=\"499\" y=\"160\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Redact</text><text x=\"499\" y=\"177\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#9C9A8E\">PHI masked</text><rect x=\"424\" y=\"250\" width=\"150\" height=\"54\" rx=\"10\" fill=\"#1A1A18\"/><text x=\"499\" y=\"272\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Digest</text><text x=\"499\" y=\"289\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#9C9A8E\">dedup · Whisper</text><path d=\"M404,222 L414,222\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.4\"/><path d=\"M414,165 L414,277\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.4\"/><path d=\"M414,165 L422,165\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.4\" marker-end=\"url(#cf-flow)\"/><path d=\"M414,277 L422,277\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.4\" marker-end=\"url(#cf-flow)\"/><path d=\"M574,165 C598,180 598,205 600,216\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.6\" marker-end=\"url(#cf-eng)\"/><path d=\"M574,277 C598,262 598,240 600,230\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.6\" marker-end=\"url(#cf-eng)\"/><rect x=\"600\" y=\"198\" width=\"128\" height=\"50\" rx=\"10\" fill=\"#1A1A18\" stroke=\"#7DB896\" stroke-width=\"1.5\"/><text x=\"664\" y=\"219\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Distill</text><text x=\"664\" y=\"235\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#A8D4BC\">bind to graph</text><path d=\"M728,223 L824,223\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.7\" marker-end=\"url(#cf-eng)\"/><circle cx=\"828\" cy=\"223\" r=\"4.5\" fill=\"#4A8C65\"/><rect x=\"950\" y=\"118\" width=\"190\" height=\"56\" rx=\"10\" fill=\"#8CC9AC\"/><text x=\"1045\" y=\"141\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Decision Graph</text><text x=\"1045\" y=\"158\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#2F5142\">tribal knowledge, queryable</text><rect x=\"950\" y=\"266\" width=\"190\" height=\"56\" rx=\"10\" fill=\"#1A1A18\"/><text x=\"1045\" y=\"289\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Backtest Datastore</text><text x=\"1045\" y=\"306\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#9C9A8E\">feeds Diagnose →</text><path d=\"M832,223 C892,223 888,150 946,146\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.7\" marker-end=\"url(#cf-eng)\"/><path d=\"M832,223 C892,223 888,290 946,294\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.7\" marker-end=\"url(#cf-eng)\"/></svg>",
+      "callout": "L1 · L2 · everything stays local through redaction — only the distilled graph and backtest store ever persist"
     },
-
     {
       "id": "capture-demo",
       "template": "video-full",
       "eyebrow": "Phase 01 · Capture · Demo",
       "headline": "Workflow capture in action.",
-      "caption": "The capture pipeline records, redacts PHI locally, digests via Whisper, and writes back to the decision graph — all without sensitive data leaving the environment.",
-      "video": null,
+      "caption": "The pipeline records an operator working, redacts PHI locally, distills the recording via Whisper, and writes a multi-hop decision trace back to the graph — without sensitive data leaving the environment.",
+      "video": "assets/videos/capture-demo.mp4",
       "video_label": "Capture pipeline demo — workflow recording → graph"
     },
-
     {
       "id": "capture-value",
       "template": "split",
       "eyebrow": "Phase 01 · Value",
       "headline": "Tribal knowledge becomes a queryable engine.",
-      "body": "Every workflow your team runs — pricing a case, reviewing a contract, routing a request — becomes a node in your intelligence graph. The wedge finds the pain. The graph compounds it.",
+      "body": "Every workflow your team runs becomes a typed, traversable trace on your intelligence graph — the seed everything else compounds on.",
       "bullets": [
-        "Works on day one with no process change required",
-        "PHI redaction happens locally — nothing sensitive leaves your environment",
+        "Works on day one — no process change required",
+        "PHI redaction happens locally; nothing sensitive leaves",
         "Each capture deepens L2: ontology, entity resolution, bi-temporal trace",
         "The graph you build in Capture funds everything in Diagnose"
       ],
-      "image": null
+      "diagram": "<svg viewBox=\"0 0 560 600\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"tk-ar\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L6,3 L0,6 Z\" fill=\"#7DB896\"/></marker></defs><rect x=\"36\" y=\"30\" width=\"138\" height=\"44\" rx=\"9\" fill=\"#242420\" stroke=\"#3A3A35\"/><text x=\"105\" y=\"57\" text-anchor=\"middle\" font-size=\"13\" fill=\"#F0EDE6\" font-family=\"DM Sans, sans-serif\" font-weight=\"600\">Workflows</text><rect x=\"211\" y=\"30\" width=\"138\" height=\"44\" rx=\"9\" fill=\"#242420\" stroke=\"#3A3A35\"/><text x=\"280\" y=\"57\" text-anchor=\"middle\" font-size=\"13\" fill=\"#F0EDE6\" font-family=\"DM Sans, sans-serif\" font-weight=\"600\">Recordings</text><rect x=\"386\" y=\"30\" width=\"138\" height=\"44\" rx=\"9\" fill=\"#242420\" stroke=\"#3A3A35\"/><text x=\"455\" y=\"57\" text-anchor=\"middle\" font-size=\"13\" fill=\"#F0EDE6\" font-family=\"DM Sans, sans-serif\" font-weight=\"600\">Decisions</text><path class=\"tk-feed\" d=\"M105,74 C105,116 262,108 278,146\" fill=\"none\" stroke=\"#7DB896\" stroke-width=\"1.6\"/><path class=\"tk-feed\" d=\"M280,74 L280,144\" fill=\"none\" stroke=\"#7DB896\" stroke-width=\"1.6\"/><path class=\"tk-feed\" d=\"M455,74 C455,116 298,108 282,146\" fill=\"none\" stroke=\"#7DB896\" stroke-width=\"1.6\"/><path d=\"M262,146 L298,146 L280,174 Z\" fill=\"#7DB896\"/><text x=\"312\" y=\"164\" font-size=\"10\" fill=\"#7DB896\" font-family=\"DM Mono, monospace\" letter-spacing=\"1\">distill</text><path d=\"M280,174 L280,192\" stroke=\"#7DB896\" stroke-width=\"1.6\" marker-end=\"url(#tk-ar)\"/><rect x=\"44\" y=\"196\" width=\"472\" height=\"300\" rx=\"16\" fill=\"#15241C\" stroke=\"#2A4A3A\"/><text x=\"66\" y=\"224\" font-size=\"10\" fill=\"#A8D4BC\" font-family=\"DM Mono, monospace\" letter-spacing=\"2\">INTELLIGENCE GRAPH</text><g stroke=\"#3E5A4C\" stroke-width=\"1.3\"><line x1=\"150\" y1=\"320\" x2=\"250\" y2=\"282\"/><line x1=\"250\" y1=\"282\" x2=\"352\" y2=\"330\"/><line x1=\"250\" y1=\"282\" x2=\"232\" y2=\"400\"/><line x1=\"352\" y1=\"330\" x2=\"432\" y2=\"300\"/><line x1=\"232\" y1=\"400\" x2=\"352\" y2=\"432\"/><line x1=\"352\" y1=\"330\" x2=\"352\" y2=\"432\"/><line x1=\"150\" y1=\"320\" x2=\"162\" y2=\"430\"/><line x1=\"432\" y1=\"300\" x2=\"440\" y2=\"422\"/></g><circle class=\"tk-node\" style=\"animation-delay:0s\" cx=\"150\" cy=\"320\" r=\"8\" fill=\"#7DB896\"/><circle class=\"tk-node\" style=\"animation-delay:.35s\" cx=\"250\" cy=\"282\" r=\"11\" fill=\"#C2D62E\"/><circle class=\"tk-node\" style=\"animation-delay:.7s\" cx=\"352\" cy=\"330\" r=\"8\" fill=\"#7DB896\"/><circle class=\"tk-node\" style=\"animation-delay:1.05s\" cx=\"232\" cy=\"400\" r=\"7\" fill=\"#A8D4BC\"/><circle class=\"tk-node\" style=\"animation-delay:1.4s\" cx=\"352\" cy=\"432\" r=\"8\" fill=\"#7DB896\"/><circle class=\"tk-node\" style=\"animation-delay:1.75s\" cx=\"432\" cy=\"300\" r=\"7\" fill=\"#A8D4BC\"/><circle class=\"tk-node\" style=\"animation-delay:2.1s\" cx=\"162\" cy=\"430\" r=\"6\" fill=\"#7DB896\"/><circle class=\"tk-node\" style=\"animation-delay:2.45s\" cx=\"440\" cy=\"422\" r=\"6\" fill=\"#C2D62E\"/><text x=\"250\" y=\"266\" text-anchor=\"middle\" font-size=\"9\" fill=\"#8FA396\" font-family=\"DM Mono, monospace\">decision</text><text x=\"446\" y=\"288\" text-anchor=\"start\" font-size=\"9\" fill=\"#8FA396\" font-family=\"DM Mono, monospace\">entity</text><text x=\"352\" y=\"452\" text-anchor=\"middle\" font-size=\"9\" fill=\"#8FA396\" font-family=\"DM Mono, monospace\">activity</text><path d=\"M280,496 L280,514\" stroke=\"#7DB896\" stroke-width=\"1.6\" marker-end=\"url(#tk-ar)\"/><rect x=\"44\" y=\"518\" width=\"472\" height=\"52\" rx=\"10\" fill=\"#242420\" stroke=\"#3A3A35\"/><text x=\"68\" y=\"540\" font-size=\"9\" fill=\"#7DB896\" font-family=\"DM Mono, monospace\" letter-spacing=\"1.5\">QUERYABLE</text><text x=\"68\" y=\"557\" font-size=\"11\" fill=\"#F0EDE6\" font-family=\"DM Sans, sans-serif\">Ask it anything — typed, traversable, provenance-bound</text></svg>"
     },
-
     {
       "id": "phase2-intro",
       "template": "phase-intro",
@@ -137,37 +185,57 @@
       "phase_number": "PHASE 02",
       "headline": "Diagnose",
       "verb": "ANALYZE",
-      "body": "You may already have workflows captured — or we connect directly to your data warehouse. Either way, we backtest and show you what you missed.",
+      "body": "You may already have workflows captured — or we connect directly to your data warehouse. Either way, we backtest your history and price what you missed.",
       "layers": [
-        { "id": "l2", "label": "L2 Intelligence Engine" },
-        { "id": "default", "label": "L3 Inference" }
+        {
+          "id": "l2",
+          "label": "L2 Intelligence Engine"
+        },
+        {
+          "id": "default",
+          "label": "L3 Inference"
+        }
       ]
     },
-
     {
       "id": "diagnose-flow",
-      "template": "flow",
-      "eyebrow": "Phase 02 · Diagnose",
-      "headline": "One pull. Priced vs what you missed.",
-      "nodes": [
-        { "style": "dark", "title": "Data Warehouse", "sub": "one schema-first pull" },
-        { "style": "green", "title": "Engine Seed", "sub": "ontology + capture graph" },
-        { "style": "dashed", "title": "Backtest + Initial Worklist", "sub": "missed $ itemized · actionable now" },
-        { "style": "dark", "title": "Priced vs $X", "sub": "% of savings" }
-      ],
-      "callout": "L2 · L3 active — the backtest engine runs your history against the intelligence graph"
+      "template": "diagram",
+      "eyebrow": "Phase 02 · Diagnose · The machinery",
+      "headline": "One pull, fanned across the engine — converged into a priced opportunity.",
+      "svg": "<svg viewBox=\"0 0 1180 440\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"dg-grey\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#999993\"/></marker><marker id=\"dg-green\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#4A8C65\"/></marker><marker id=\"dg-lime\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7.5\" markerHeight=\"7.5\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#9DAE16\"/></marker></defs><path d=\"M218,206 C270,206 270,139 286,139\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.6\" marker-end=\"url(#dg-grey)\"/><path d=\"M218,234 C270,234 270,301 286,301\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.7\" marker-end=\"url(#dg-green)\"/><path d=\"M488,139 L546,139\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.6\" marker-end=\"url(#dg-grey)\"/><path d=\"M488,301 L546,301\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.7\" marker-end=\"url(#dg-green)\"/><path d=\"M762,128 C820,128 824,125 858,125\" fill=\"none\" stroke=\"#9DAE16\" stroke-width=\"1.7\" marker-end=\"url(#dg-lime)\"/><path d=\"M762,150 C842,150 850,214 876,219\" fill=\"none\" stroke=\"#9DAE16\" stroke-width=\"1.7\" marker-end=\"url(#dg-lime)\"/><path d=\"M746,295 C842,295 850,244 876,239\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.7\" marker-end=\"url(#dg-green)\"/><rect x=\"60\" y=\"186\" width=\"158\" height=\"68\" rx=\"10\" fill=\"#1A1A18\"/><text x=\"139\" y=\"216\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Data Connectors</text><text x=\"139\" y=\"235\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#9C9A8E\">warehouse + direct</text><rect x=\"288\" y=\"110\" width=\"200\" height=\"58\" rx=\"10\" fill=\"#1A1A18\"/><text x=\"388\" y=\"135\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Backtest Datastore</text><text x=\"388\" y=\"153\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#9C9A8E\">analyst-scoped</text><rect x=\"288\" y=\"272\" width=\"200\" height=\"58\" rx=\"10\" fill=\"#8CC9AC\"/><text x=\"388\" y=\"297\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Engine Seeding</text><text x=\"388\" y=\"315\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#2F5142\">ontology + graph</text><rect x=\"546\" y=\"110\" width=\"216\" height=\"58\" rx=\"10\" fill=\"#EDEBE4\" stroke=\"#DEDAD2\" stroke-width=\"1\"/><rect x=\"546\" y=\"116\" width=\"5\" height=\"46\" rx=\"2.5\" fill=\"#C2D62E\"/><text x=\"660\" y=\"135\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Backtest + Initial Worklist</text><text x=\"660\" y=\"153\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#999993\">what you missed</text><rect x=\"546\" y=\"272\" width=\"200\" height=\"58\" rx=\"10\" fill=\"#1A1A18\"/><text x=\"646\" y=\"297\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Active Worklists</text><text x=\"646\" y=\"315\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#9C9A8E\">always-on</text><rect x=\"858\" y=\"96\" width=\"214\" height=\"58\" rx=\"10\" fill=\"#EDEBE4\" stroke=\"#DEDAD2\" stroke-width=\"1\"/><rect x=\"858\" y=\"102\" width=\"5\" height=\"46\" rx=\"2.5\" fill=\"#C2D62E\"/><text x=\"971\" y=\"121\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Diagnostic Delivered</text><text x=\"971\" y=\"139\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#999993\">report + worklist</text><rect x=\"876\" y=\"196\" width=\"196\" height=\"70\" rx=\"10\" fill=\"#1A1A18\" stroke=\"#9DAE16\" stroke-width=\"1.4\"/><text x=\"974\" y=\"227\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Opportunity, Sized</text><text x=\"974\" y=\"246\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#C2D62E\">priced vs $X</text></svg>",
+      "callout": "L2 · L3 · the backtest runs your history against the intelligence graph and converges on a single priced number"
     },
-
     {
       "id": "diagnose-demo",
       "template": "video-full",
       "eyebrow": "Phase 02 · Diagnose · Demo",
       "headline": "The backtest: what you missed, priced.",
-      "caption": "Connect your data warehouse, seed the engine, and generate a worklist of missed revenue and savings opportunities — quantified against your actual history.",
-      "video": null,
+      "caption": "Connect the warehouse, seed the engine, and generate a stack-ranked worklist of recoverable value — quantified against your actual history.",
+      "video": "assets/videos/diagnose-demo.mp4",
       "video_label": "Diagnose demo — data connect → backtest → priced worklist"
     },
-
+    {
+      "id": "diagnose-readout",
+      "template": "image-sequence",
+      "eyebrow": "Phase 02 · Diagnose · The readout",
+      "headline": "From raw claims to a priced worklist.",
+      "caption": "The diagnostic reduces operational signal to a stack-ranked list of recoverable value — every finding dollar-attributed and evidence-backed.",
+      "interval": 3400,
+      "frames": [
+        {
+          "src": "assets/images/diagnose/diagnose-report.png",
+          "label": "Diagnostic report · $187,500 leakage, evidence-backed"
+        },
+        {
+          "src": "assets/images/diagnose/diagnose-claims.png",
+          "label": "Raw claims · CARC / RARC codes, underpayment itemized"
+        },
+        {
+          "src": "assets/images/diagnose/diagnose-dashboard.png",
+          "label": "Total found value · $529,500 across workflows"
+        }
+      ]
+    },
     {
       "id": "phase3-intro",
       "template": "phase-intro",
@@ -175,100 +243,256 @@
       "phase_number": "PHASE 03",
       "headline": "Enhance",
       "verb": "ACTIVATE",
-      "body": "The analyst surfaces artifacts. Your team judges them — confirm, reject, edit. Every judgment makes the next one sharper. The loop runs continuously.",
+      "body": "The analyst surfaces artifacts. Your team judges them — confirm, edit, resolve. Every judgment writes back to the graph and makes the next one sharper. The loop runs continuously.",
       "layers": [
-        { "id": "default", "label": "L3 Inference" },
-        { "id": "default", "label": "L4 Execution" },
-        { "id": "default", "label": "L5 Experience" }
+        {
+          "id": "default",
+          "label": "L3 Inference"
+        },
+        {
+          "id": "default",
+          "label": "L4 Execution"
+        },
+        {
+          "id": "default",
+          "label": "L5 Experience"
+        }
       ]
     },
-
     {
       "id": "enhance-flow",
-      "template": "flow",
-      "eyebrow": "Phase 03 · Enhance",
-      "headline": "The value loop — every judgment compounds.",
-      "nodes": [
-        { "style": "green", "title": "Analyst", "sub": "harnessed · engine-backed" },
-        { "style": "dashed", "title": "Artifact", "sub": "two-way · in-system" },
-        { "style": "default", "title": "User", "sub": "confirm · reject" },
-        { "style": "green", "title": "Engine Compounds", "sub": "judgments → graph nodes" }
-      ],
-      "callout": "Engine compounds · regenerates and re-ranks the analyst's worklist · every judgment makes the next one sharper"
+      "template": "diagram",
+      "eyebrow": "Phase 03 · Enhance · The machinery",
+      "headline": "The value loop — every judgment regenerates the work and compounds the engine.",
+      "svg": "<svg viewBox=\"0 0 1180 460\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"eh-grey\" viewBox=\"0 0 10 10\" refX=\"8.5\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#999993\"/></marker><marker id=\"eh-green\" viewBox=\"0 0 10 10\" refX=\"8.5\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#4A8C65\"/></marker><marker id=\"eh-lime\" viewBox=\"0 0 10 10\" refX=\"8.5\" refY=\"5\" markerWidth=\"7.5\" markerHeight=\"7.5\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#9DAE16\"/></marker></defs><path d=\"M280,150 L318,150\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.7\" marker-end=\"url(#eh-green)\"/><path d=\"M468,150 L512,150\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.6\" marker-end=\"url(#eh-grey)\"/><text x=\"490\" y=\"140\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#999993\">output</text><path d=\"M650,150 L694,150\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.6\" marker-end=\"url(#eh-grey)\"/><path d=\"M848,150 L892,150\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.7\" marker-end=\"url(#eh-green)\"/><text x=\"870\" y=\"140\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#4A8C65\">accept</text><path d=\"M1004,150 L1020,150\" fill=\"none\" stroke=\"#9DAE16\" stroke-width=\"2\" marker-end=\"url(#eh-lime)\"/><path d=\"M774,176 L774,230\" fill=\"none\" stroke=\"#999993\" stroke-width=\"1.6\" marker-end=\"url(#eh-grey)\"/><path d=\"M708,258 C540,258 400,250 400,178\" fill=\"none\" stroke=\"#9DAE16\" stroke-width=\"1.7\" marker-end=\"url(#eh-lime)\"/><text x=\"556\" y=\"250\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"10\" fill=\"#9DAE16\" font-weight=\"700\">↻ regenerate</text><path d=\"M774,288 L774,360\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.7\" marker-end=\"url(#eh-green)\"/><text x=\"766\" y=\"326\" text-anchor=\"end\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#4A8C65\">feedback compounds</text><path d=\"M950,176 C950,300 852,390 796,390\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.6\" marker-end=\"url(#eh-green)\"/><text x=\"902\" y=\"322\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#4A8C65\">accepted compounds</text><path d=\"M640,362 C540,340 440,300 440,180\" fill=\"none\" stroke=\"#4A8C65\" stroke-width=\"1.6\" marker-end=\"url(#eh-green)\"/><rect x=\"162\" y=\"124\" width=\"118\" height=\"52\" rx=\"10\" fill=\"#8CC9AC\"/><text x=\"221\" y=\"146\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Analyst</text><text x=\"221\" y=\"163\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#2F5142\">engine-backed</text><rect x=\"322\" y=\"124\" width=\"146\" height=\"52\" rx=\"10\" fill=\"#1A1A18\"/><text x=\"395\" y=\"146\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#FFFFFF\">Artifactory</text><text x=\"395\" y=\"163\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#9C9A8E\">always-on socket</text><rect x=\"516\" y=\"124\" width=\"134\" height=\"52\" rx=\"10\" fill=\"#EDEBE4\" stroke=\"#DEDAD2\" stroke-width=\"1\"/><text x=\"583\" y=\"146\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Artifact</text><text x=\"583\" y=\"163\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#999993\">generated</text><rect x=\"698\" y=\"124\" width=\"150\" height=\"52\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#DEDAD2\" stroke-width=\"1.3\"/><circle cx=\"718\" cy=\"142\" r=\"4.4\" fill=\"none\" stroke=\"#1A1A18\" stroke-width=\"1.3\"/><path d=\"M711,156 C711,150.5 714,148 718,148 C722,148 725,150.5 725,156\" fill=\"none\" stroke=\"#1A1A18\" stroke-width=\"1.3\"/><text x=\"787\" y=\"146\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">User</text><text x=\"787\" y=\"163\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#999993\">confirm · edit</text><rect x=\"896\" y=\"124\" width=\"108\" height=\"52\" rx=\"10\" fill=\"#EDEBE4\" stroke=\"#DEDAD2\" stroke-width=\"1\"/><rect x=\"896\" y=\"129\" width=\"5\" height=\"42\" rx=\"2.5\" fill=\"#C2D62E\"/><text x=\"953\" y=\"146\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"12.5\" font-weight=\"600\" fill=\"#1A1A18\">Final artifact</text><text x=\"953\" y=\"163\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#999993\">delivered</text><rect x=\"1024\" y=\"124\" width=\"130\" height=\"52\" rx=\"10\" fill=\"#8CC9AC\"/><text x=\"1089\" y=\"146\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Found Value</text><text x=\"1089\" y=\"163\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#2F5142\">→ Reinvent</text><rect x=\"708\" y=\"232\" width=\"132\" height=\"56\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#DEDAD2\" stroke-width=\"1.3\"/><text x=\"774\" y=\"256\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Feedback</text><text x=\"774\" y=\"273\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#999993\">judgment</text><rect x=\"612\" y=\"362\" width=\"180\" height=\"56\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#4A8C65\" stroke-width=\"1.6\"/><text x=\"702\" y=\"386\" text-anchor=\"middle\" font-family=\"DM Sans, Arial, sans-serif\" font-size=\"13\" font-weight=\"600\" fill=\"#1A1A18\">Engine compounds</text><text x=\"702\" y=\"403\" text-anchor=\"middle\" font-family=\"DM Mono, Consolas, monospace\" font-size=\"9\" fill=\"#4A8C65\">judgments → graph</text></svg>",
+      "callout": "↻ regenerate on every judgment · acceptance ships value, feedback compounds the engine → Reinvent"
     },
-
     {
       "id": "enhance-demo",
       "template": "video-full",
       "eyebrow": "Phase 03 · Enhance · Demo",
-      "headline": "The analyst worklist — work-finding value loop.",
-      "caption": "The harnessed analyst surfaces prioritized artifacts. Each confirm or reject writes provenance back to the graph. The worklist re-ranks in real time. The human stays in the lead.",
-      "video": null,
+      "headline": "The analyst worklist — work-finding, live.",
+      "caption": "The harnessed analyst surfaces prioritized artifacts. Each confirm or resolve writes provenance back to the graph and re-ranks the worklist in real time. The human stays in the lead.",
+      "video": "assets/videos/enhance-demo.mp4",
       "video_label": "Enhance demo — analyst worklist → artifact → judgment → graph"
     },
-
     {
-      "id": "principles-overview",
-      "template": "principles",
-      "eyebrow": "Five Principles · How the platform is built",
-      "headline": "What we take in, run through, and ship.",
-      "items": [
+      "id": "enhance-loop",
+      "template": "image-sequence",
+      "eyebrow": "Phase 03 · Enhance · The loop",
+      "headline": "Surfaced, judged, resolved — then it compounds.",
+      "caption": "An always-on worklist of dollar-attributed artifacts. The team reviews evidence, attaches proof, and resolves — and the engine learns from every decision.",
+      "interval": 3400,
+      "frames": [
         {
-          "name": "Value loops",
-          "body": "The atomic unit of work. An event fires an analyst, it generates an artifact, a human confirms or rejects, the judgment writes back as provenance, the artifact regenerates. <strong>The surface is swappable — the loop is the product.</strong>",
-          "tags": [
-            { "label": "L4·L5", "style": "dark" },
-            { "label": "DOGFOOD", "style": "green" }
-          ]
+          "src": "assets/images/enhance/enhance-worklist-review.png",
+          "label": "To review · artifact with evidence + proof-of-resolution"
         },
         {
-          "name": "Agentic distillation",
-          "body": "Use AI to extract structure and determinism out of raw, unstructured signal — shrink-distill the context down to what's load-bearing, then bind it to the graph.",
-          "tags": [
-            { "label": "MARQUEE", "style": "dark" },
-            { "label": "L2", "style": "green" }
-          ]
+          "src": "assets/images/enhance/enhance-backtest-graph.png",
+          "label": "Backtest · the billing problem, traced on the graph"
         },
         {
-          "name": "Harnessing context",
-          "body": "Don't stuff a prompt — compose the right context from the graph for each inference, scoped and provenance-bound. The graph is the memory; the composer decides what reaches the model and why.",
-          "tags": [
-            { "label": "L3", "style": "green" },
-            { "label": "L3", "style": "default" }
-          ]
-        },
-        {
-          "name": "Control & tool routing",
-          "body": "<strong>Capability-token RBAC</strong> gates what any agent can touch at the field level; routing decides which model and which tool, predictably. This is the harness that earns autonomy.",
-          "tags": [
-            { "label": "L2", "style": "green" },
-            { "label": "L4", "style": "dark" }
-          ]
-        },
-        {
-          "name": "Agentic patterns",
-          "body": "The orchestration shapes we lead on: human-in-the-lead, harnessed-not-autonomous, and — the frontier we own — <strong>collaborative loops</strong> where conflicting human feedback raises a merge conflict and the agent calls the meeting.",
-          "tags": [
-            { "label": "FRONTIER", "style": "green" },
-            { "label": "RAMP", "style": "default" }
-          ]
+          "src": "assets/images/enhance/enhance-worklist-solved.png",
+          "label": "Solved · resolved and resubmitted, payment confirmed"
         }
       ]
     },
-
+    {
+      "id": "phase4-intro",
+      "template": "phase-intro",
+      "phase_label": "Phase Four",
+      "phase_number": "PHASE 04",
+      "headline": "Reinvent",
+      "verb": "COMPOUND",
+      "body": "The builders compound into agentic flows. The same loop that earned trust now runs self-improving — the workflow starts to fix itself, with your team only on the exceptions.",
+      "layers": [
+        {
+          "id": "default",
+          "label": "L4 Execution"
+        },
+        {
+          "id": "default",
+          "label": "L5 Experience"
+        }
+      ]
+    },
+    {
+      "id": "three-layers",
+      "template": "layers",
+      "eyebrow": "The Platform · How it fits together",
+      "headline": "Three layers, one engine.",
+      "toolset": {
+        "number": "01",
+        "name": "The Toolset",
+        "note": "Builders, organized by journey phase",
+        "phases": [
+          {
+            "pn": "Phase 01",
+            "pt": "Capture",
+            "tools": [
+              {
+                "nm": "Task Miner",
+                "ico": "mine"
+              },
+              {
+                "nm": "Ontology Builder",
+                "ico": "onto"
+              }
+            ]
+          },
+          {
+            "pn": "Phase 02",
+            "pt": "Diagnose",
+            "tools": [
+              {
+                "nm": "Data Connectors",
+                "ico": "plug"
+              },
+              {
+                "nm": "Backtest / Benchmark",
+                "ico": "bench"
+              }
+            ]
+          },
+          {
+            "pn": "Phase 03",
+            "pt": "Enhance",
+            "tools": [
+              {
+                "nm": "Artifact Value Loops",
+                "ico": "loop"
+              },
+              {
+                "nm": "Active Worklist",
+                "ico": "list"
+              }
+            ]
+          },
+          {
+            "pn": "Phase 04",
+            "pt": "Reinvent",
+            "ghost": true,
+            "tools": [
+              {
+                "nm": "Self-improving Loops",
+                "ico": "inf",
+                "ghost": true
+              },
+              {
+                "nm": "Artifact Value Loops",
+                "ico": "loop",
+                "ghost": true
+              }
+            ]
+          }
+        ]
+      },
+      "flows": [
+        "builders distill signal into the engine",
+        "the harness composes context from the engine"
+      ],
+      "arch_meta": {
+        "number": "02",
+        "name": "Context-Aware Agentic Architecture",
+        "note": "The harness that controls the AI"
+      },
+      "arch": [
+        {
+          "nm": "Custom Harnesses",
+          "ico": "harness"
+        },
+        {
+          "nm": "Smart Routing",
+          "ico": "route"
+        },
+        {
+          "nm": "Context Control",
+          "ico": "funnel"
+        },
+        {
+          "nm": "Artifactory Value Loops",
+          "ico": "socket"
+        }
+      ],
+      "engine": {
+        "number": "03",
+        "name": "The Intelligence Engine",
+        "note": "The moat",
+        "sub": [
+          {
+            "nm": "Domain Ontology",
+            "ico": "type"
+          },
+          {
+            "nm": "Information Graph",
+            "ico": "graph"
+          },
+          {
+            "nm": "Provenance Store",
+            "ico": "prov"
+          },
+          {
+            "nm": "Activity Layer",
+            "ico": "activity"
+          },
+          {
+            "nm": "Authorization Layer",
+            "ico": "lock"
+          }
+        ],
+        "prims_label": "The primitives we lead on",
+        "prims": [
+          {
+            "nm": "Decisions-as-graph",
+            "ico": "dec"
+          },
+          {
+            "nm": "Activities in the graph",
+            "ico": "activity"
+          },
+          {
+            "nm": "Bitemporal validity",
+            "ico": "clock"
+          },
+          {
+            "nm": "Engine-native RBAC",
+            "ico": "key"
+          }
+        ],
+        "caption": "everything traverses it · the surface is swappable, the engine is not"
+      }
+    },
+    {
+      "id": "reinvent-engine",
+      "template": "image-sequence",
+      "eyebrow": "Phase 04 · Reinvent · The engine",
+      "headline": "One engine, compounding underneath it all.",
+      "caption": "Every capture, diagnosis, and judgment becomes typed, traversable, provenance-bound nodes — the customer world-model that makes each workflow smarter than the last.",
+      "interval": 3600,
+      "frames": [
+        {
+          "src": "assets/images/reinvent/reinvent-engine-graph.png",
+          "label": "The intelligence graph · decisions, activities, entities as nodes"
+        },
+        {
+          "src": "assets/images/reinvent/reinvent-engine-detail.png",
+          "label": "Traversable · scoped by entity, payer, and source"
+        }
+      ]
+    },
     {
       "id": "cta",
       "template": "cta",
       "eyebrow": "What comes next",
-      "headline": "Where do you sit on the journey?",
-      "subhead": "We meet you at your current phase and move you forward. Capture builds the graph. Diagnose prices the gap. Enhance closes it — continuously.",
+      "headline": "Let's pinpoint the pain — and <span class=\"hl\">size the opportunity.</span>",
+      "subhead": "Pick the workflow that's quietly costing you the most across your stack. We map where the friction lives, size what fixing it is worth, and show exactly where Found enhances it — so the next quarter looks different from the last.",
       "steps": [
-        "Map your current phase",
-        "Identify the first workflow",
-        "Run the diagnostic"
+        "Pinpoint your highest-cost workflow",
+        "Size the opportunity",
+        "Map the enhance path across your stack"
       ],
       "url": "content.foundai.cloud"
     }
-
   ]
 }

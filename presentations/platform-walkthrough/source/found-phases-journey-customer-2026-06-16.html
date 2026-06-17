@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Journey — Found AI (customer)</title>
+<style>
+  :root{
+    --paper:#F1EFEA; --ink:#16160F; --muted:#8A887E; --line:#E2E0D7; --hair:#D7D4C9;
+    --dark:#141412; --mint:#8CC9AC; --mint-deep:#3F9D78; --lime:#C2D62E; --lime-deep:#9DAE16;
+    --card:#FFFFFF;
+    --mono: ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  .page{max-width:1280px;margin:0 auto;padding:42px 54px 40px;}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+  .mast{display:flex;justify-content:space-between;align-items:flex-end;
+    border-bottom:2px solid var(--ink);padding-bottom:18px;}
+  .mast h1{font-size:38px;line-height:1;letter-spacing:-.02em;margin:0;font-weight:650;}
+  .mast h1 .dim{color:var(--muted);font-weight:500;}
+
+  .grid{margin-top:28px;}
+  .phases{display:grid;grid-template-columns:118px repeat(4,1fr);gap:13px;align-items:stretch;}
+  .rowlabel{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);}
+  .rowhead{display:flex;align-items:center;}
+
+  .phead{border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;min-height:80px;justify-content:center;}
+  .phead.solid{background:var(--dark);color:#fff;}
+  .phead.ghost{background:transparent;border:1px dashed var(--hair);color:var(--muted);}
+  .phead .pn{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7E7D72;}
+  .phead .pt{font-size:27px;font-weight:650;letter-spacing:-.015em;line-height:1;}
+
+  .cell{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 18px;display:flex;align-items:center;min-height:58px;}
+  .cell.ghost{background:transparent;border:1px dashed var(--hair);}
+  .cell .ct{font-size:16px;font-weight:550;letter-spacing:-.01em;line-height:1.2;}
+  .cell .ct .ar{color:var(--mint-deep);}
+  .cell.accent{border-left:3px solid var(--lime);}
+  .cell.found .ct{color:var(--mint-deep);font-weight:650;}
+  .cell.plat{border-left:3px solid var(--mint);}
+  .cell.plat .ct{font-weight:620;}
+  .cell.ghost .ct{color:var(--muted);font-weight:500;}
+
+  .rgap{height:9px;}
+
+  .footnote{margin-top:30px;border-top:1px solid var(--line);padding-top:18px;}
+  .footnote p{font-size:16px;line-height:1.62;color:#33322B;max-width:1050px;margin:0;}
+  .footnote p strong{color:var(--ink);}
+  .footnote p .hl{color:var(--lime-deep);font-weight:600;}
+
+  @page{ size:A4 landscape; margin:11mm; }
+  @media print{
+    html,body{background:#fff;}.page{max-width:none;padding:0;}
+    .cell,.phead{ break-inside:avoid; }
+    *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="mast">
+    <h1>The journey <span class="dim">— where you start, where it goes</span></h1>
+    <span class="label">Found AI</span>
+  </header>
+
+  <div class="grid">
+    <div class="phases" style="margin-bottom:13px;">
+      <div class="rowhead"></div>
+      <div class="phead solid"><span class="pn">Phase 01</span><span class="pt">Capture</span></div>
+      <div class="phead solid"><span class="pn">Phase 02</span><span class="pt">Diagnose</span></div>
+      <div class="phead solid"><span class="pn">Phase 03</span><span class="pt">Enhance</span></div>
+      <div class="phead ghost"><span class="pn">Phase 04</span><span class="pt">Reinvent</span></div>
+    </div>
+
+    <!-- FOUND -->
+    <div class="phases">
+      <div class="rowhead"><span class="rowlabel">Found</span></div>
+      <div class="cell found"><div class="ct">Understands</div></div>
+      <div class="cell found"><div class="ct">Analyzes</div></div>
+      <div class="cell found"><div class="ct">Activates</div></div>
+      <div class="cell found ghost"><div class="ct">Compounds</div></div>
+    </div>
+    <div class="rgap"></div>
+
+    <!-- YOU -->
+    <div class="phases">
+      <div class="rowhead"><span class="rowlabel">You</span></div>
+      <div class="cell"><div class="ct">Work as normal</div></div>
+      <div class="cell"><div class="ct">Read the readout</div></div>
+      <div class="cell"><div class="ct">Your team acts</div></div>
+      <div class="cell ghost"><div class="ct">Grant autonomy</div></div>
+    </div>
+    <div class="rgap"></div>
+
+    <!-- WHAT YOU GET -->
+    <div class="phases">
+      <div class="rowhead"><span class="rowlabel">What you get</span></div>
+      <div class="cell"><div class="ct">We find the pain</div></div>
+      <div class="cell accent"><div class="ct">Leakage <span class="ar">→</span> dollars</div></div>
+      <div class="cell accent"><div class="ct">Always-on worklist</div></div>
+      <div class="cell ghost"><div class="ct">The workflow gets better</div></div>
+    </div>
+    <div class="rgap"></div>
+
+    <!-- PLATFORM -->
+    <div class="phases">
+      <div class="rowhead"><span class="rowlabel">Platform</span></div>
+      <div class="cell plat"><div class="ct">Workflow Audit</div></div>
+      <div class="cell plat"><div class="ct">Backtest</div></div>
+      <div class="cell plat"><div class="ct">Active Worklists</div></div>
+      <div class="cell plat ghost"><div class="ct">Intelligence Engine</div></div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    <p>We meet you where you are and move one workflow at a time:
+    <strong>understand → diagnose → enhance → reinvent</strong>. Each step proves itself before the next, and each stands on its own.
+    <span class="hl">You stay in the lead</span> until the system has earned the right to run on its own.</p>
+  </div>
+
+</div>
+</body>
+</html>

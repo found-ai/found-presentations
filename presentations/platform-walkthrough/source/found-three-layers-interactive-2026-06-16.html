@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three Layers, One Engine — Found AI (interactive)</title>
+<style>
+  :root{
+    --paper:#F1EFEA; --ink:#16160F; --muted:#8A887E; --line:#E2E0D7; --hair:#D7D4C9;
+    --dark:#141412; --dark-2:#21211D; --mint:#8CC9AC; --mint-deep:#3F9D78;
+    --lime:#C2D62E; --lime-deep:#9DAE16; --card:#FFFFFF; --soft:#EDEBE4;
+    --mono: ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  .page{max-width:1180px;margin:0 auto;padding:30px 40px 42px;}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+  .mast{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:13px;}
+  .mast h1{font-size:30px;line-height:1.02;letter-spacing:-.02em;margin:0;font-weight:650;}
+  .mast h1 .dim{color:var(--muted);font-weight:500;}
+  .hint{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--mint-deep);text-transform:uppercase;}
+  .hint::before{content:"●";color:var(--lime);margin-right:6px;}
+
+  .zone{margin-top:20px;}
+  .zhdr{display:flex;align-items:baseline;gap:12px;margin-bottom:11px;}
+  .zhdr .zn{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+  .zhdr .zt{font-size:16px;font-weight:640;letter-spacing:-.01em;}
+  .zhdr .zk{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--mint-deep);text-transform:uppercase;margin-left:auto;}
+  .zhdr .zk.lime{color:var(--lime-deep);}
+
+  /* layer 01 — phase columns */
+  .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .phcol{display:flex;flex-direction:column;gap:9px;}
+  .phcap{padding:0 2px 2px;border-bottom:1px solid var(--line);margin-bottom:2px;}
+  .phcap .pn{font-family:var(--mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);display:block;}
+  .phcap .pt{font-size:13.5px;font-weight:640;letter-spacing:-.01em;}
+  .phcap.ghost .pt{color:var(--muted);}
+
+  .tiles.four{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 10px 11px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:9px;cursor:pointer;
+    transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease;position:relative;}
+  .tile:hover{transform:translateY(-3px);box-shadow:0 8px 22px -12px rgba(20,20,15,.35);border-color:var(--mint-deep);}
+  .tile .ico{width:34px;height:34px;color:var(--ink);}
+  .tile .ico svg{width:100%;height:100%;display:block;}
+  .tile .nm{font-size:12.5px;font-weight:600;letter-spacing:-.01em;line-height:1.14;}
+  .tile .acc{position:absolute;top:0;left:14px;right:14px;height:3px;border-radius:0 0 3px 3px;background:var(--mint);}
+  .tiles.four .tile .acc{background:var(--lime);}
+  .tile.ghost{border-style:dashed;background:transparent;}
+  .tile.ghost .ico,.tile.ghost .nm{color:var(--muted);}
+  .tile.ghost .acc{background:var(--hair);}
+  .tile .plus{position:absolute;bottom:7px;right:9px;font-family:var(--mono);font-size:12px;color:var(--hair);transition:color .14s;}
+  .tile:hover .plus{color:var(--mint-deep);}
+
+  .flow{display:flex;flex-direction:column;align-items:center;gap:2px;margin:15px 0 3px;}
+  .flow .ar{color:var(--mint-deep);font-size:17px;line-height:1;}
+  .flow .ft{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .flow .ft b{color:var(--mint-deep);font-weight:500;}
+
+  /* engine moat */
+  .engine{background:#11261E;border:1px solid #1E3A2D;border-radius:14px;padding:18px 20px;margin-top:8px;}
+  .engine .ehdr{display:flex;align-items:baseline;gap:12px;margin-bottom:13px;}
+  .engine .ehdr .en{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#5E7E6E;}
+  .engine .ehdr .et{font-size:19px;font-weight:660;letter-spacing:-.01em;color:#fff;}
+  .engine .ehdr .ek{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--lime);text-transform:uppercase;margin-left:auto;}
+  .ssrow{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;}
+  .sschip{background:#16302433;border:1px solid #2A4A3A;border-radius:9px;padding:11px 9px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;cursor:pointer;transition:border-color .14s, transform .14s;position:relative;}
+  .sschip:hover{border-color:#4f9a76;transform:translateY(-2px);}
+  .sschip .sico{width:24px;height:24px;color:var(--mint);}
+  .sschip .sico svg{width:100%;height:100%;}
+  .sschip .snm{font-size:11.5px;font-weight:600;color:var(--mint);letter-spacing:-.01em;line-height:1.12;}
+  .ssdiv{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#5E7E6E;margin:14px 0 9px;}
+  .primrow{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+  .primtile{background:#1a3327;border:1px solid #2A4A3A;border-radius:9px;padding:11px 9px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;cursor:pointer;transition:border-color .14s, transform .14s;}
+  .primtile:hover{border-color:#9DAE16;transform:translateY(-2px);}
+  .primtile .pico{width:24px;height:24px;color:var(--lime);}
+  .primtile .pico svg{width:100%;height:100%;}
+  .primtile .pwrap{display:flex;flex-direction:column;gap:1px;}
+  .primtile .pwrap .pk{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:#7FA791;}
+  .primtile .pwrap .pl{font-size:11.5px;font-weight:600;color:#EAF2EC;letter-spacing:-.01em;line-height:1.12;}
+  .ecta{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#7FA791;margin-top:12px;text-align:center;}
+
+  /* modal */
+  .scrim{position:fixed;inset:0;background:rgba(20,20,15,.46);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;padding:24px;z-index:50;}
+  .scrim.open{display:flex;}
+  .modal{background:var(--card);border-radius:16px;max-width:500px;width:100%;padding:24px 26px 22px;box-shadow:0 30px 70px -20px rgba(0,0,0,.5);max-height:86vh;overflow:auto;}
+  .modal.dark{background:#13271F;color:#EAF2EC;}
+  .mtop{display:flex;align-items:flex-start;gap:13px;border-bottom:1px solid var(--line);padding-bottom:13px;}
+  .modal.dark .mtop{border-color:#2A4A3A;}
+  .mtop .mico{width:40px;height:40px;flex:none;color:var(--mint-deep);}
+  .modal.dark .mtop .mico{color:var(--mint);}
+  .mtop .mico svg{width:100%;height:100%;}
+  .mtop .mttl{font-size:20px;font-weight:660;letter-spacing:-.02em;line-height:1.05;}
+  .mtop .mlyr{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mint-deep);margin-top:5px;}
+  .modal.dark .mtop .mlyr{color:var(--mint);}
+  .mtop .x{margin-left:auto;flex:none;width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:15px;color:var(--muted);line-height:1;}
+  .mtop .x:hover{background:var(--soft);color:var(--ink);}
+  .modal.dark .x{border-color:#2A4A3A;color:#9FC4B1;}
+  .mbody{font-size:14px;line-height:1.6;color:#33322B;margin-top:13px;}
+  .modal.dark .mbody{color:#CFE3D7;} .mbody b{color:var(--ink);} .modal.dark .mbody b{color:var(--mint);}
+  .mtags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+  .mtag{font-family:var(--mono);font-size:9px;letter-spacing:.07em;color:var(--mint-deep);background:#E6F1EB;border:1px solid #CDE6DA;border-radius:5px;padding:2px 8px;}
+  .mtag.lime{color:var(--lime-deep);background:#F3F5DF;border-color:#E4E8BE;}
+
+  footer{margin-top:24px;border-top:1px solid var(--line);padding-top:9px;}
+  footer .fcol{font-size:10px;color:var(--muted);line-height:1.5;}
+  footer .fcol b{color:#54534B;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;}
+
+  @media (max-width:820px){
+    .phases,.tiles.four,.ssrow,.primrow{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="mast">
+    <div><h1>Three layers, one engine <span class="dim">— how it fits together</span></h1></div>
+    <div style="text-align:right;">
+      <div class="label">Found AI · 2026-06-16</div>
+      <div class="hint" style="margin-top:6px;">Click anything for detail</div>
+    </div>
+  </header>
+
+  <!-- LAYER 01 — organized by phase -->
+  <section class="zone">
+    <div class="zhdr"><span class="zn">Layer 01</span><span class="zt">The Toolset</span><span class="zk">builders, by journey phase</span></div>
+    <div class="phases" id="toolset"></div>
+  </section>
+
+  <div class="flow"><span class="ft">builders <b>distill signal</b> into the engine</span><span class="ar">↓</span></div>
+
+  <!-- LAYER 02 -->
+  <section class="zone" style="margin-top:6px;">
+    <div class="zhdr"><span class="zn">Layer 02</span><span class="zt">Context-Aware Agentic Architecture</span><span class="zk lime">harness &amp; control AI</span></div>
+    <div class="tiles four" id="arch"></div>
+  </section>
+
+  <div class="flow"><span class="ft">the harness <b>composes context</b> from the engine</span><span class="ar">↓</span></div>
+
+  <!-- LAYER 03 — ENGINE -->
+  <div class="engine">
+    <div class="ehdr"><span class="en">Layer 03</span><span class="et">The Intelligence Engine</span><span class="ek">the core moat ↻</span></div>
+    <div class="ssrow" id="subsys"></div>
+    <div class="ssdivlabel ssdiv" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#5E7E6E;margin:14px 0 9px;">Four primitives we lead on</div>
+    <div class="primrow" id="prims"></div>
+    <div class="ecta">everything traverses it · the surface is swappable, the engine is not</div>
+  </div>
+
+  <footer>
+    <div class="fcol"><b>Source</b> · Found OS — product-vision · intelligence-layer (5 sub-systems · 4 primitives) · platform-reference-architecture · atomic value loop · agentic principles.</div>
+  </footer>
+</div>
+
+<div class="scrim" id="scrim"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
+
+<script>
+const I = {
+  mine:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M8.2 7.2l7.5 3.6M8.2 16.8l7.5-3.6"/></svg>',
+  plug:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 3.5v5M13.5 3.5v5M8.5 8.5h7v2a3.5 3.5 0 0 1-7 0z"/><path d="M12 14v3.5"/><path d="M9 20.5h6"/></svg>',
+  onto:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="4" rx="1"/><rect x="3.5" y="16" width="6" height="4" rx="1"/><rect x="14.5" y="16" width="6" height="4" rx="1"/><path d="M12 7v4M12 11H6.5v5M12 11h6v5"/></svg>',
+  bench:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><rect x="5" y="12" width="3" height="8"/><rect x="10.5" y="8" width="3" height="12"/><rect x="16" y="14" width="3" height="6"/><path d="M5 6.5a6 6 0 0 1 6-3"/><path d="M11 3.5l-1.6 1M11 3.5l-1 1.8"/></svg>',
+  loop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14-4.5M4 13a8 8 0 0 0 14 4.5"/><path d="M6 3.5V7H9.5M18 20.5V17h-3.5"/></svg>',
+  list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 5.5l1.3 1.3L7.5 4.2M4 11.5l1.3 1.3L7.5 10.2M4 17.5l1.3 1.3L7.5 16.2"/></svg>',
+  inf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9a3 3 0 1 0 0 6c2 0 3-1.5 5-3s3-3 5-3a3 3 0 1 1 0 6c-2 0-3-1.5-5-3s-3-3-5-3z"/></svg>',
+  harness:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4H4v3M17 4h3v3M7 20H4v-3M17 20h3v-3"/><rect x="9" y="9" width="6" height="6" rx="1.2"/></svg>',
+  route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="5.5" r="2.2"/><circle cx="18" cy="18.5" r="2.2"/><path d="M8.2 11l7.6-4.7M8.2 13l7.6 4.7"/></svg>',
+  funnel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg>',
+  socket:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8.5 10.5l7 3M15.5 10.5l-7 3"/></svg>',
+  type:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14M12 6v12M8.5 18h7"/></svg>',
+  graph:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="17" r="2"/><path d="M7.6 8.4l3.2 7M16.4 8.4l-3.2 7M8 7h8"/></svg>',
+  prov:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v12H7z"/><path d="M13.5 4v4H18"/><path d="M9.5 13l1.5 1.5L14.5 11"/></svg>',
+  activity:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-6 4 13 2.5-7H21"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="14.5" r="1.3"/></svg>',
+  // primitive icons
+  dec:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l5 5-5 5-5-5z"/><path d="M12 13v4a3 3 0 0 0 3 3h3"/><path d="M18 17l2 3-3 1" stroke-width="1.5"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/><path d="M12 4V2.5M12 21.5V20" opacity=".6"/></svg>',
+  key:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><path d="M11 11l8 8M16 16l2-2M18.5 18.5l1.5-1.5"/></svg>'
+};
+
+// PHASES → tools
+const PHASES = [
+  {pn:'Phase 01', pt:'Capture', tools:[
+    {id:'mine', ico:'mine', nm:'Task Miner', phase:'Capture', tags:['L1 → L2','marquee'],
+     body:'Watches an operator work — screen + audio — redacts locally, distills the recording into a <b>multi-hop decision trace</b> on the graph.'},
+    {id:'onto', ico:'onto', nm:'Ontology Builder', phase:'Capture', tags:['L2 · seed'],
+     body:'One YAML → TS · Zod · SurrealDB DDL + permissions. <b>Seeds the engine</b>, typed at write time.'}
+  ]},
+  {pn:'Phase 02', pt:'Diagnose', tools:[
+    {id:'plug', ico:'plug', nm:'Data Connectors', phase:'Diagnose', tags:['L1 → L2'],
+     body:'Streaming ingest (CDC / MCP) with <b>bi-temporal stamps</b> — event_time + ingest_time on every record.'},
+    {id:'bench', ico:'bench', nm:'Backtest / Benchmark', phase:'Diagnose', tags:['L2 · L3'],
+     body:'Expected vs actual across history, internal + external comps. <b>Prices the leakage → dollars.</b>'}
+  ]},
+  {pn:'Phase 03', pt:'Enhance', tools:[
+    {id:'avl', ico:'loop', nm:'Artifact Value Loops', phase:'Enhance', tags:['L4 · L5','dogfood'],
+     body:'Analyst → artifact → human confirms / edits → judgment writes back → regenerates. <b>The loop is the product.</b>'},
+    {id:'work', ico:'list', nm:'Active Worklist', phase:'Enhance', tags:['L4 · L5'],
+     body:'Always-on, continuously re-ranked — the work-finding loop, live against the workflow.'}
+  ]},
+  {pn:'Phase 04', pt:'Reinvent', ghost:true, tools:[
+    {id:'self', ico:'inf', nm:'Self-improving Loops', phase:'Reinvent', tags:['L4 · L5','future'], ghost:true,
+     body:'Builders compound into agentic flows — the worklist starts to fix itself. <b>Trust-earned.</b>'},
+    {id:'avl_r', ico:'loop', nm:'Artifact Value Loops', phase:'Reinvent', tags:['L4 · L5','compounding'], ghost:true,
+     body:'The same loop, now self-driving — regenerates and re-ranks across cycles with the human only on exceptions. The loop that built trust earns autonomy.'}
+  ]}
+];
+
+const ARCH = [
+  {id:'harness', ico:'harness', nm:'Custom Harnesses', tags:['L4'],
+   body:'The analyst as one orchestrated unit — <b>harnessed, not autonomous</b>. Autonomy earned per workflow.'},
+  {id:'route', ico:'route', nm:'Smart Routing', tags:['L3 · L4'],
+   body:'Multi-model gateway — Anthropic · OpenAI · local. <b>Which model, which tool</b>, predictably.'},
+  {id:'ctx', ico:'funnel', nm:'Context Control', tags:['L2 · L3'],
+   body:'<b>Compose</b> scoped, provenance-bound context from the graph. Capability tokens gate every field.'},
+  {id:'artf', ico:'socket', nm:'Artifactory Value Loops', tags:['L4 · L5','frontier'],
+   body:'The value loop as an always-on Slack socket — <b>we dogfood it on ourselves first</b>.'}
+];
+
+const SUBSYS = [
+  {id:'ss0', ico:'type', nm:'Domain Ontology', lyr:'L2 sub-system', body:'The type system — what can exist and how entities relate. Carries classification metadata that <b>codegens into engine permissions</b>.'},
+  {id:'ss1', ico:'graph', nm:'Information Graph', lyr:'L2 sub-system', body:'The instantiated, typed, traversable <b>customer world model</b> conforming to the ontology.'},
+  {id:'ss2', ico:'prov', nm:'Provenance Store', lyr:'L2 sub-system', body:'Decision traces and lineage as <b>first-class graph nodes</b> — not catalog metadata.'},
+  {id:'ss3', ico:'activity', nm:'Activity Layer', lyr:'L2 sub-system', body:'Orchestration events stored as graph data <b>alongside the entities</b> they touched.'},
+  {id:'ss4', ico:'lock', nm:'Authorization Layer', lyr:'L2 sub-system', body:'Engine-native field-level RBAC + capability tokens, <b>enforced at query time</b>.'}
+];
+
+const PRIMS = [
+  {id:'p1', ico:'dec', pk:'Primitive 01', pl:'Decisions-as-graph', lyr:'Primitive · write-back', nm:'Decisions as first-class graph objects', body:'Every run produces decision nodes linked to the assertions that informed them and the outcomes they produced. <b>Closed-loop write-back</b> means the next run reads the history of decisions, not just the data.'},
+  {id:'p2', ico:'activity', pk:'Primitive 02', pl:'Activities in the graph', lyr:'Primitive', nm:'Activities live in the graph', body:'Workflow runs, agent invocations, connector pulls sit next to the entities they operated on. <b>No log-to-graph reconciliation pipeline.</b>'},
+  {id:'p3', ico:'clock', pk:'Primitive 03', pl:'Bitemporal validity', lyr:'Primitive', nm:'Bitemporal validity', body:'Every assertion carries event_time and ingest_time. <b>"What did we know on date X?"</b> is a first-class query — time travel and rollback against the substrate.'},
+  {id:'p4', ico:'key', pk:'Primitive 04', pl:'Engine-native RBAC', lyr:'Primitive', nm:'Field-level RBAC + capability tokens', body:'PERMISSIONS clauses codegen’d from ontology classification, plus capability tokens with per-activity scope. <b>The engine refuses unauthorized field reads/writes</b> at query time.'}
+];
+
+function tile(t){
+  return `<div class="tile ${t.ghost?'ghost':''}" data-id="${t.id}"><span class="acc"></span><span class="ico">${I[t.ico]}</span><span class="nm">${t.nm}</span><span class="plus">+</span></div>`;
+}
+// render phase columns
+document.getElementById('toolset').innerHTML = PHASES.map(p=>
+  `<div class="phcol"><div class="phcap ${p.ghost?'ghost':''}"><span class="pn">${p.pn}</span><span class="pt">${p.pt}</span></div>${p.tools.map(tile).join('')}</div>`
+).join('');
+document.getElementById('arch').innerHTML = ARCH.map(tile).join('');
+document.getElementById('subsys').innerHTML = SUBSYS.map(s=>
+  `<div class="sschip" data-id="${s.id}"><span class="sico">${I[s.ico]}</span><span class="snm">${s.nm}</span></div>`).join('');
+document.getElementById('prims').innerHTML = PRIMS.map(p=>
+  `<div class="primtile" data-id="${p.id}"><span class="pico">${I[p.ico]}</span><span class="pwrap"><span class="pk">${p.pk}</span><span class="pl">${p.pl}</span></span></div>`).join('');
+
+// index everything
+const byId={};
+PHASES.forEach(p=>p.tools.forEach(t=>byId[t.id]={...t,_dark:false}));
+ARCH.forEach(t=>byId[t.id]={...t,_dark:false});
+SUBSYS.forEach(s=>byId[s.id]={...s,_dark:true,phase:null});
+PRIMS.forEach(p=>byId[p.id]={...p,_dark:true,phase:null,nm:p.nm});
+
+const scrim=document.getElementById('scrim'), modal=document.getElementById('modal');
+function closeModal(){ scrim.classList.remove('open'); }
+scrim.addEventListener('click', e=>{ if(e.target===scrim) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+function openFor(id){
+  const t=byId[id]; if(!t) return;
+  const tags=(t.tags||[]).map(x=>`<span class="mtag ${/frontier|dogfood|marquee|future/.test(x)?'lime':''}">${x}</span>`).join('');
+  const lyr = t.phase ? `Journey · ${t.phase}` : (t.lyr||'');
+  modal.className='modal'+(t._dark?' dark':'');
+  modal.innerHTML=`<div class="mtop"><span class="mico">${I[t.ico]}</span><div><div class="mttl">${t.nm}</div>${lyr?`<div class="mlyr">${lyr}</div>`:''}</div><button class="x" onclick="closeModal()">✕</button></div><div class="mbody">${t.body}</div>${tags?`<div class="mtags">${tags}</div>`:''}`;
+  scrim.classList.add('open');
+}
+document.querySelectorAll('[data-id]').forEach(el=>{
+  el.addEventListener('click', ()=>openFor(el.dataset.id));
+});
+</script>
+</body>
+</html>

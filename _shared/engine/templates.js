@@ -230,6 +230,231 @@ window.FoundTemplates = {
     `;
   },
 
+  // ── wedge ────────────────────────────────────────────
+  // Merged journey + wedge. Stepped ascending bar chart across phases,
+  // with lime value-markers, plus a per-phase customer axis underneath.
+  // bars[]{n,title,height,ghost} · markers[]{title,after,end,height}
+  // phases[]{number,name,verb,span,ghost,you,get,platform}
+  wedge(s) {
+    const bars = s.bars || [];
+    const markers = s.markers || [];
+    // build the plot as bars interleaved with markers (marker.after = index of bar it follows)
+    const cells = [];
+    bars.forEach((b, i) => {
+      cells.push(`
+        <div class="wedge-bar ${b.ghost ? 'wedge-bar--ghost' : 'wedge-bar--solid'}" style="height:${b.height}%">
+          <span class="wedge-bar-n">${b.n || ''}</span>
+          <span class="wedge-bar-t">${b.title}</span>
+        </div>`);
+      const m = markers.find(mk => mk.after === i);
+      if (m) cells.push(`
+        <div class="wedge-marker ${m.end ? 'wedge-marker--end' : ''}" style="height:${m.height || 90}%">
+          <span class="wedge-marker-label">${m.title}</span>
+          <span class="wedge-marker-cap"></span>
+          <span class="wedge-marker-line"></span>
+        </div>`);
+    });
+    return `
+      <div class="slide-wedge">
+        <div class="wedge-header" data-animate>
+          ${s.eyebrow ? `<div class="eyebrow">${s.eyebrow}</div>` : ''}
+          <h2 class="wedge-headline">${s.headline}</h2>
+        </div>
+        <div class="wedge-plot" data-animate>${cells.join('')}</div>
+        <div class="wedge-axis" data-animate>
+          ${(s.phases || []).map(p => `
+            <div class="wedge-pgrp ${p.ghost ? 'wedge-pgrp--ghost' : ''}" style="flex:${p.span || 2}">
+              <div class="wedge-phead">
+                <span class="wedge-pn">${p.number || ''}</span>
+                <span class="wedge-pl">${p.name}${p.verb ? ` <span class="wedge-dim">· ${p.verb}</span>` : ''}</span>
+              </div>
+              <div class="wedge-prows">
+                ${p.you ? `
+                  <div class="wedge-prow">
+                    <span class="wedge-prow-k">You</span>
+                    <span class="wedge-prow-v">${p.you}</span>
+                  </div>` : ''}
+                ${p.get ? `
+                  <div class="wedge-prow wedge-prow--get">
+                    <span class="wedge-prow-k">What you get</span>
+                    <span class="wedge-prow-v">${p.get}</span>
+                  </div>` : ''}
+              </div>
+              ${p.platform ? `<div class="wedge-ptag">${p.platform}</div>` : ''}
+            </div>`).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  // ── image-sequence ───────────────────────────────────
+  // Cross-fade loop through a set of frames. frames[]{src,label} · interval (ms)
+  'image-sequence'(s) {
+    const frames = s.frames || [];
+    return `
+      <div class="slide-image-sequence" data-imgseq data-interval="${s.interval || 3200}">
+        <div class="imgseq-stage" data-animate>
+          ${frames.map((f, i) => `
+            <figure class="imgseq-frame ${i === 0 ? 'is-active' : ''}" data-frame="${i}">
+              <img src="${f.src}" alt="${f.label || ''}" loading="${i === 0 ? 'eager' : 'lazy'}">
+            </figure>`).join('')}
+          ${frames.length > 1 ? `<div class="imgseq-dots">
+            ${frames.map((f, i) => `<span class="imgseq-dot ${i === 0 ? 'is-active' : ''}" data-dot="${i}"></span>`).join('')}
+          </div>` : ''}
+        </div>
+        <div class="imgseq-overlay">
+          ${s.eyebrow ? `<div class="eyebrow eyebrow--inverse" data-animate>${s.eyebrow}</div>` : ''}
+          ${s.headline ? `<h2 class="imgseq-headline" data-animate>${s.headline}</h2>` : ''}
+          ${s.caption ? `<p class="imgseq-caption" data-animate>${s.caption}</p>` : ''}
+          ${frames.length > 1 && frames.some(f => f.label) ? `<div class="imgseq-frame-label" data-animate><span data-frame-label="0">${frames[0].label || ''}</span></div>` : ''}
+        </div>
+      </div>
+    `;
+  },
+
+  // ── layers ───────────────────────────────────────────
+  // Three-layers-one-engine stack. Icons inlined by key; content lives in slide object.
+  // s.toolset.phases[]{pn,pt,ghost,tools[]{nm,ico,ghost}} · s.arch[]{nm,ico} · s.arch_meta{}
+  // s.engine{number,name,note,sub[]{nm,ico},prims_label,prims[]{nm,ico},caption} · s.flows[2]
+  layers(s) {
+    const ICONS = {
+      mine:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M8.2 7.2l7.5 3.6M8.2 16.8l7.5-3.6"/></svg>',
+      plug:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 3.5v5M13.5 3.5v5M8.5 8.5h7v2a3.5 3.5 0 0 1-7 0z"/><path d="M12 14v3.5"/><path d="M9 20.5h6"/></svg>',
+      onto:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="4" rx="1"/><rect x="3.5" y="16" width="6" height="4" rx="1"/><rect x="14.5" y="16" width="6" height="4" rx="1"/><path d="M12 7v4M12 11H6.5v5M12 11h6v5"/></svg>',
+      bench:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><rect x="5" y="12" width="3" height="8"/><rect x="10.5" y="8" width="3" height="12"/><rect x="16" y="14" width="3" height="6"/><path d="M5 6.5a6 6 0 0 1 6-3"/><path d="M11 3.5l-1.6 1M11 3.5l-1 1.8"/></svg>',
+      loop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14-4.5M4 13a8 8 0 0 0 14 4.5"/><path d="M6 3.5V7H9.5M18 20.5V17h-3.5"/></svg>',
+      list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 5.5l1.3 1.3L7.5 4.2M4 11.5l1.3 1.3L7.5 10.2M4 17.5l1.3 1.3L7.5 16.2"/></svg>',
+      inf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9a3 3 0 1 0 0 6c2 0 3-1.5 5-3s3-3 5-3a3 3 0 1 1 0 6c-2 0-3-1.5-5-3s-3-3-5-3z"/></svg>',
+      harness:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4H4v3M17 4h3v3M7 20H4v-3M17 20h3v-3"/><rect x="9" y="9" width="6" height="6" rx="1.2"/></svg>',
+      route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="5.5" r="2.2"/><circle cx="18" cy="18.5" r="2.2"/><path d="M8.2 11l7.6-4.7M8.2 13l7.6 4.7"/></svg>',
+      funnel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg>',
+      socket:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8.5 10.5l7 3M15.5 10.5l-7 3"/></svg>',
+      type:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14M12 6v12M8.5 18h7"/></svg>',
+      graph:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="17" r="2"/><path d="M7.6 8.4l3.2 7M16.4 8.4l-3.2 7M8 7h8"/></svg>',
+      prov:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v12H7z"/><path d="M13.5 4v4H18"/><path d="M9.5 13l1.5 1.5L14.5 11"/></svg>',
+      activity:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-6 4 13 2.5-7H21"/></svg>',
+      lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="14.5" r="1.3"/></svg>',
+      dec:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l5 5-5 5-5-5z"/><path d="M12 13v4a3 3 0 0 0 3 3h3"/><path d="M18 17l2 3-3 1" stroke-width="1.5"/></svg>',
+      clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/><path d="M12 4V2.5M12 21.5V20" opacity=".6"/></svg>',
+      key:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><path d="M11 11l8 8M16 16l2-2M18.5 18.5l1.5-1.5"/></svg>'
+    };
+    const ic = (k) => `<span class="layers-ico">${ICONS[k] || ''}</span>`;
+    const graphMotif = `
+      <svg class="layers-gmotif" viewBox="0 0 96 48" fill="none" aria-hidden="true">
+        <line x1="14" y1="14" x2="40" y2="24" stroke="#4A8C65" stroke-width="1.3"/>
+        <line x1="40" y1="24" x2="70" y2="12" stroke="#8CC9AC" stroke-width="1.3"/>
+        <line x1="40" y1="24" x2="68" y2="36" stroke="#8CC9AC" stroke-width="1.3"/>
+        <line x1="14" y1="14" x2="20" y2="38" stroke="#4A8C65" stroke-width="1.3"/>
+        <line x1="20" y1="38" x2="68" y2="36" stroke="#4A8C65" stroke-width="1.3"/>
+        <line x1="70" y1="12" x2="84" y2="28" stroke="#A8D4BC" stroke-width="1.3"/>
+        <circle cx="14" cy="14" r="3.4" fill="#8CC9AC"/>
+        <circle cx="40" cy="24" r="4.2" fill="#C2D62E"/>
+        <circle cx="70" cy="12" r="3.4" fill="#A8D4BC"/>
+        <circle cx="20" cy="38" r="2.8" fill="#8CC9AC"/>
+        <circle cx="68" cy="36" r="2.8" fill="#A8D4BC"/>
+        <circle cx="84" cy="28" r="2.4" fill="#C2D62E"/>
+      </svg>`;
+
+    const toolset = s.toolset || {};
+    const arch = s.arch || [];
+    const engine = s.engine || {};
+    const flows = s.flows || [];
+
+    const tile = (t) => `
+      <div class="layers-tile ${t.ghost ? 'layers-tile--ghost' : ''}">
+        <span class="layers-tile-acc"></span>
+        ${ic(t.ico)}
+        <span class="layers-tile-nm">${t.nm}</span>
+      </div>`;
+
+    const flow = (txt) => `
+      <div class="layers-flow" data-animate>
+        <span class="layers-flow-t">${txt || ''}</span>
+        <span class="layers-flow-ar">↓</span>
+      </div>`;
+
+    return `
+      <div class="slide-layers">
+        <div class="layers-header" data-animate>
+          ${s.eyebrow ? `<div class="eyebrow">${s.eyebrow}</div>` : ''}
+          <h2 class="layers-headline">${s.headline}</h2>
+        </div>
+        <div class="layers-stack">
+
+          <div class="layers-zone" data-animate>
+            <div class="layers-zhdr">
+              <span class="layers-zn">${toolset.number || '01'}</span>
+              <span class="layers-zt">${toolset.name || 'The Toolset'}</span>
+              ${toolset.note ? `<span class="layers-zk">${toolset.note}</span>` : ''}
+            </div>
+            <div class="layers-phases">
+              ${(toolset.phases || []).map(p => `
+                <div class="layers-phase ${p.ghost ? 'layers-phase--ghost' : ''}">
+                  <div class="layers-phcap">
+                    <span class="layers-phn">${p.pn || ''}</span>
+                    <span class="layers-pht">${p.pt || ''}</span>
+                  </div>
+                  ${(p.tools || []).map(tile).join('')}
+                </div>`).join('')}
+            </div>
+          </div>
+
+          ${flow(flows[0])}
+
+          <div class="layers-zone" data-animate>
+            <div class="layers-zhdr">
+              <span class="layers-zn">${(s.arch_meta && s.arch_meta.number) || '02'}</span>
+              <span class="layers-zt">${(s.arch_meta && s.arch_meta.name) || 'Context-Aware Agentic Architecture'}</span>
+              ${(s.arch_meta && s.arch_meta.note) ? `<span class="layers-zk">${s.arch_meta.note}</span>` : ''}
+            </div>
+            <div class="layers-archrow">
+              ${arch.map(tile).join('')}
+            </div>
+          </div>
+
+          ${flow(flows[1])}
+
+          <div class="layers-engine" data-animate>
+            <div class="layers-ehdr">
+              <span class="layers-en">${engine.number || '03'}</span>
+              <span class="layers-et">${engine.name || 'The Intelligence Engine'}</span>
+              ${engine.note ? `<span class="layers-ek">${engine.note}</span>` : ''}
+              ${graphMotif}
+            </div>
+            <div class="layers-ssrow">
+              ${(engine.sub || []).map(x => `
+                <div class="layers-sschip">${ic(x.ico)}<span>${x.nm}</span></div>`).join('')}
+            </div>
+            ${(engine.prims || []).length ? `
+              <div class="layers-ssdiv">${engine.prims_label || 'The primitives we lead on'}</div>
+              <div class="layers-primrow">
+                ${engine.prims.map(p => `
+                  <div class="layers-primtile">${ic(p.ico)}<span>${p.nm}</span></div>`).join('')}
+              </div>` : ''}
+            ${engine.caption ? `<div class="layers-ecta">${engine.caption}</div>` : ''}
+          </div>
+
+        </div>
+      </div>
+    `;
+  },
+
+  // ── diagram ──────────────────────────────────────────
+  // Renders a provided inline SVG flow diagram, centered, with header + callout.
+  // eyebrow, headline, svg (raw SVG markup string), callout
+  diagram(s) {
+    return `
+      <div class="slide-diagram">
+        <div class="diagram-header" data-animate>
+          ${s.eyebrow ? `<div class="eyebrow">${s.eyebrow}</div>` : ''}
+          <h2 class="diagram-headline">${s.headline || ''}</h2>
+        </div>
+        <div class="diagram-canvas" data-animate>${s.svg || ''}</div>
+        ${s.callout ? `<div class="diagram-callout" data-animate>${s.callout}</div>` : ''}
+      </div>
+    `;
+  },
+
   // ── default ──────────────────────────────────────────
   default(s) {
     return `

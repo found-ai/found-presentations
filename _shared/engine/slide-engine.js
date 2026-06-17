@@ -39,7 +39,9 @@ class FoundEngine {
 
     this.container.className = 'found-deck';
     this._buildChrome();
-    this._renderSlide(0, 'none');
+    const start = this._hashIndex();
+    this.currentIndex = start;
+    this._renderSlide(start, 'none');
     this._bindKeys();
     this._bindTouch();
     this._bindHash();
@@ -69,14 +71,74 @@ class FoundEngine {
     document.getElementById('nav-next').addEventListener('click', () => this.next());
     this.slideCounter = document.getElementById('deck-counter');
 
-    // Brand mark
+    // Brand mark — click to go home
     const brand = document.createElement('div');
     brand.className = 'deck-brand';
     brand.innerHTML = `<span class="deck-brand-name">FOUND AI</span>`;
     if (this.meta.title) {
       brand.innerHTML += `<span class="deck-brand-sep">·</span><span class="deck-brand-title">${this.meta.title}</span>`;
     }
+    brand.title = 'Home';
+    brand.style.cursor = 'pointer';
+    brand.addEventListener('click', () => { window.location.href = '/'; });
     document.body.appendChild(brand);
+
+    // Jump-to-slide overlay — click the counter
+    this._buildJumpOverlay();
+    this.slideCounter.style.cursor = 'pointer';
+    this.slideCounter.title = 'Jump to slide';
+    this.slideCounter.addEventListener('click', (e) => { e.stopPropagation(); this._toggleJump(); });
+
+    // Clean mode — hide chrome for screenshots. ?clean in URL starts hidden.
+    if (/[?&]clean\b/.test(location.search)) document.body.classList.add('deck-clean');
+  }
+
+  toggleChrome(force) {
+    const hide = force === undefined ? !document.body.classList.contains('deck-clean') : force;
+    document.body.classList.toggle('deck-clean', hide);
+  }
+
+  // ── Jump-to-slide ────────────────────────────────────
+
+  _buildJumpOverlay() {
+    const ov = document.createElement('div');
+    ov.className = 'deck-jump';
+    ov.innerHTML = `
+      <div class="deck-jump-panel">
+        <div class="deck-jump-title">Jump to slide</div>
+        <div class="deck-jump-grid">
+          ${this.slides.map((s, i) => `
+            <button class="deck-jump-item" data-idx="${i}">
+              <span class="deck-jump-num">${String(i + 1).padStart(2, '0')}</span>
+              <span class="deck-jump-label">${this._slideLabel(s)}</span>
+            </button>`).join('')}
+        </div>
+      </div>`;
+    document.body.appendChild(ov);
+    ov.addEventListener('click', (e) => { if (e.target === ov) this._toggleJump(false); });
+    ov.querySelectorAll('.deck-jump-item').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        this._toggleJump(false);
+        this.goTo(parseInt(btn.dataset.idx, 10));
+      });
+    });
+    this.jumpOverlay = ov;
+  }
+
+  _slideLabel(s) {
+    const raw = s.headline || s.name || s.template || '';
+    const text = String(raw).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+    return text.length > 46 ? text.slice(0, 44) + '…' : text;
+  }
+
+  _toggleJump(force) {
+    if (!this.jumpOverlay) return;
+    const open = force === undefined ? !this.jumpOverlay.classList.contains('open') : force;
+    this.jumpOverlay.classList.toggle('open', open);
+    if (open) {
+      this.jumpOverlay.querySelectorAll('.deck-jump-item').forEach((b, i) =>
+        b.classList.toggle('is-current', i === this.currentIndex));
+    }
   }
 
   _updateChrome() {
@@ -154,6 +216,7 @@ class FoundEngine {
     incoming.classList.remove('slide-incoming');
 
     setTimeout(() => {
+      this._clearImageSequences(outgoing);
       outgoing.remove();
       this.currentIndex = idx;
       this._updateChrome();
@@ -231,7 +294,41 @@ class FoundEngine {
       });
     });
 
+    this._initImageSequences(el);
+
     return el;
+  }
+
+  // ── Image-sequence cross-fade ────────────────────────
+
+  _initImageSequences(el) {
+    el._imgseqTimers = el._imgseqTimers || [];
+    el.querySelectorAll('[data-imgseq]').forEach((seq) => {
+      const frames = [...seq.querySelectorAll('.imgseq-frame')];
+      if (frames.length < 2) return;
+      const dots = [...seq.querySelectorAll('.imgseq-dot')];
+      const labelEl = seq.querySelector('[data-frame-label]');
+      const labels = frames.map(f => f.querySelector('img')?.getAttribute('alt') || '');
+      const interval = parseInt(seq.dataset.interval, 10) || 3200;
+      let i = 0;
+      const timer = setInterval(() => {
+        const next = (i + 1) % frames.length;
+        frames[i].classList.remove('is-active');
+        frames[next].classList.add('is-active');
+        if (dots[i]) dots[i].classList.remove('is-active');
+        if (dots[next]) dots[next].classList.add('is-active');
+        if (labelEl) labelEl.textContent = labels[next] || '';
+        i = next;
+      }, interval);
+      el._imgseqTimers.push(timer);
+    });
+  }
+
+  _clearImageSequences(el) {
+    if (el && el._imgseqTimers) {
+      el._imgseqTimers.forEach(t => clearInterval(t));
+      el._imgseqTimers = [];
+    }
   }
 
   _defaultTemplate(slide) {
@@ -254,6 +351,10 @@ class FoundEngine {
         e.preventDefault(); this.prev();
       } else if (e.key === 'f') {
         document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+      } else if (e.key === 'c') {
+        this.toggleChrome();
+      } else if (e.key === 'Escape') {
+        this._toggleJump(false);
       }
     });
   }
@@ -267,12 +368,18 @@ class FoundEngine {
     }, { passive: true });
   }
 
+  _hashIndex() {
+    const idx = parseInt(location.hash.replace('#', ''), 10) - 1;
+    if (!isNaN(idx) && idx >= 0 && idx < this.slides.length) return idx;
+    return 0;
+  }
+
   _bindHash() {
-    const idx = parseInt(location.hash.replace('#', '')) - 1;
-    if (!isNaN(idx) && idx > 0 && idx < this.slides.length) {
-      this.currentIndex = 0;
-      setTimeout(() => this.goTo(idx), 100);
-    }
+    // Honor browser back/forward and manual hash edits after initial load.
+    window.addEventListener('hashchange', () => {
+      const idx = this._hashIndex();
+      if (idx !== this.currentIndex) this.goTo(idx);
+    });
   }
 }
 

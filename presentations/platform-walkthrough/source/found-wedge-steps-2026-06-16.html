@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Wedge — stepped — Found AI</title>
+<style>
+  :root{
+    --paper:#F1EFEA; --ink:#16160F; --muted:#8A887E; --line:#E2E0D7; --hair:#D7D4C9;
+    --dark:#141412; --mint:#8CC9AC; --mint-deep:#3F9D78; --lime:#C2D62E; --lime-deep:#9DAE16;
+    --card:#FFFFFF;
+    --mono: ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  .page{max-width:1340px;margin:0 auto;padding:40px 60px 40px 54px;}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+  .mast{display:flex;justify-content:space-between;align-items:flex-end;
+    border-bottom:2px solid var(--ink);padding-bottom:16px;}
+  .mast h1{font-size:36px;line-height:1;letter-spacing:-.02em;margin:0;font-weight:650;}
+  .mast h1 .hl{color:var(--lime-deep);}
+
+  .plotwrap{position:relative;margin-top:56px;}
+
+  .cols{grid-template-columns:1fr 1fr 1fr 1fr 18px 1fr 1fr 18px 1fr 1fr 1fr 18px;}
+  .plot{display:grid;gap:14px;align-items:end;height:438px;}
+
+  .bar{border-radius:9px 9px 0 0;padding:13px 14px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;}
+  .bar.solid{background:var(--dark);color:#fff;}
+  .bar.ghost{background:transparent;border:1px dashed var(--hair);color:var(--muted);}
+  .bar .bn{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#6F6E64;}
+  .bar.ghost .bn{color:#A8A69C;}
+  .bar .bt{font-size:15.5px;font-weight:560;line-height:1.13;letter-spacing:-.01em;}
+
+  .marker{position:relative;}
+  .marker .mline{position:absolute;left:50%;transform:translateX(-50%);top:0;bottom:0;width:3px;background:var(--lime);}
+  .marker .mcap{position:absolute;left:50%;transform:translateX(-50%);top:-3px;width:11px;height:11px;border-radius:2px;background:var(--lime);}
+  .marker .mlabel{position:absolute;left:50%;transform:translateX(-50%);top:-30px;white-space:nowrap;font-size:14.5px;color:var(--ink);font-weight:520;}
+  .marker.end .mlabel{left:auto;right:-2px;transform:none;text-align:right;}
+
+  .axis{display:grid;gap:14px;margin-top:14px;}
+  .pgrp{border-top:1px solid var(--hair);padding-top:11px;}
+  .pgrp .pn{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .pgrp .pl{font-size:16px;font-weight:620;margin-top:4px;letter-spacing:-.01em;}
+  .pgrp .pl .dim{color:var(--muted);font-weight:450;font-family:var(--mono);font-size:12px;letter-spacing:.04em;}
+
+  @page{ size:A4 landscape; margin:9mm; }
+  @media print{
+    html,body{background:#fff;}.page{max-width:none;padding:0;}
+    .bar,.pgrp{ break-inside:avoid; }
+    *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="mast">
+    <h1>The enhancement process is <span class="hl">the wedge.</span></h1>
+    <span class="label">Found AI · 2026-06-16</span>
+  </header>
+
+  <div class="plotwrap">
+    <div class="plot cols">
+      <div class="bar solid" style="height:28%"><span class="bn">01</span><span class="bt">Workflow Capture</span></div>
+      <div class="bar solid" style="height:37%"><span class="bn">02</span><span class="bt">Connect Data</span></div>
+      <div class="bar solid" style="height:46%"><span class="bn">03</span><span class="bt">Run Diagnostic</span></div>
+      <div class="bar solid" style="height:55%"><span class="bn">04</span><span class="bt">Backtest Delivery</span></div>
+
+      <div class="marker" style="height:70%"><span class="mlabel">Opportunity, sized.</span><span class="mcap"></span><span class="mline"></span></div>
+
+      <div class="bar solid" style="height:64%"><span class="bn">05</span><span class="bt">Active Worklist</span></div>
+      <div class="bar solid" style="height:75%"><span class="bn">06</span><span class="bt">Workflow Enhance</span></div>
+
+      <div class="marker" style="height:88%"><span class="mlabel">Value + ROI, proven.</span><span class="mcap"></span><span class="mline"></span></div>
+
+      <div class="bar ghost" style="height:82%"><span class="bn">07</span><span class="bt">Intel Engine</span></div>
+      <div class="bar ghost" style="height:90%"><span class="bn">08</span><span class="bt">Agentic Flows</span></div>
+      <div class="bar ghost" style="height:97%"><span class="bn">09</span><span class="bt">Self-improving Loops</span></div>
+
+      <div class="marker end" style="height:100%"><span class="mlabel">Scaled Outcomes</span><span class="mcap"></span><span class="mline"></span></div>
+    </div>
+
+    <div class="axis cols">
+      <div class="pgrp" style="grid-column:1 / 3"><div class="pn">Phase 01</div><div class="pl">Capture <span class="dim">· understand</span></div></div>
+      <div class="pgrp" style="grid-column:3 / 5"><div class="pn">Phase 02</div><div class="pl">Diagnose <span class="dim">· analyze</span></div></div>
+      <div class="pgrp" style="grid-column:6 / 8"><div class="pn">Phase 03</div><div class="pl">Enhance <span class="dim">· activate</span></div></div>
+      <div class="pgrp" style="grid-column:9 / 12"><div class="pn">Phase 04</div><div class="pl">Reinvent <span class="dim">· compound</span></div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
