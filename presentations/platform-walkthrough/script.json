@@ -145,7 +145,30 @@
           "id": "l2",
           "label": "L2 Intelligence Engine"
         }
-      ]
+      ],
+      "journey": {
+        "caption": "The journey · you are here",
+        "active": 0,
+        "steps": [
+          {
+            "phase": "Capture",
+            "bars": 2
+          },
+          {
+            "phase": "Diagnose",
+            "bars": 2
+          },
+          {
+            "phase": "Enhance",
+            "bars": 2
+          },
+          {
+            "phase": "Reinvent",
+            "bars": 3,
+            "ghost": true
+          }
+        ]
+      }
     },
     {
       "id": "capture-flow",
@@ -163,6 +186,24 @@
       "caption": "The pipeline records an operator working, redacts PHI locally, distills the recording via Whisper, and writes a multi-hop decision trace back to the graph — without sensitive data leaving the environment.",
       "video": "assets/videos/capture-demo.mp4",
       "video_label": "Capture pipeline demo — workflow recording → graph"
+    },
+    {
+      "id": "capture-readout",
+      "template": "image-sequence",
+      "eyebrow": "Phase 01 · Capture · The readout",
+      "headline": "From a screen recording to a structured workflow.",
+      "caption": "The pipeline reconstructs the workflow step by step from the recording, then distills each segment's transcript into typed, evidence-backed observations — the raw material the graph is built from.",
+      "interval": 3600,
+      "frames": [
+        {
+          "src": "assets/images/capture/capture-ss-new2.png",
+          "label": "Workflow draft map · reconstructed from the recording, step by step"
+        },
+        {
+          "src": "assets/images/capture/capture-ss-new1.png",
+          "label": "Segment-level · transcript distilled into structured observations"
+        }
+      ]
     },
     {
       "id": "capture-value",
@@ -195,7 +236,30 @@
           "id": "default",
           "label": "L3 Inference"
         }
-      ]
+      ],
+      "journey": {
+        "caption": "The journey · you are here",
+        "active": 1,
+        "steps": [
+          {
+            "phase": "Capture",
+            "bars": 2
+          },
+          {
+            "phase": "Diagnose",
+            "bars": 2
+          },
+          {
+            "phase": "Enhance",
+            "bars": 2
+          },
+          {
+            "phase": "Reinvent",
+            "bars": 3,
+            "ghost": true
+          }
+        ]
+      }
     },
     {
       "id": "diagnose-flow",
@@ -257,7 +321,30 @@
           "id": "default",
           "label": "L5 Experience"
         }
-      ]
+      ],
+      "journey": {
+        "caption": "The journey · you are here",
+        "active": 2,
+        "steps": [
+          {
+            "phase": "Capture",
+            "bars": 2
+          },
+          {
+            "phase": "Diagnose",
+            "bars": 2
+          },
+          {
+            "phase": "Enhance",
+            "bars": 2
+          },
+          {
+            "phase": "Reinvent",
+            "bars": 3,
+            "ghost": true
+          }
+        ]
+      }
     },
     {
       "id": "enhance-flow",
@@ -315,153 +402,38 @@
           "id": "default",
           "label": "L5 Experience"
         }
-      ]
+      ],
+      "journey": {
+        "caption": "The journey · you are here",
+        "active": 3,
+        "steps": [
+          {
+            "phase": "Capture",
+            "bars": 2
+          },
+          {
+            "phase": "Diagnose",
+            "bars": 2
+          },
+          {
+            "phase": "Enhance",
+            "bars": 2
+          },
+          {
+            "phase": "Reinvent",
+            "bars": 3,
+            "ghost": true
+          }
+        ]
+      }
     },
     {
       "id": "three-layers",
-      "template": "layers",
+      "template": "diagram",
       "eyebrow": "The Platform · How it fits together",
-      "headline": "Three layers, one engine.",
-      "toolset": {
-        "number": "01",
-        "name": "The Toolset",
-        "note": "Builders, organized by journey phase",
-        "phases": [
-          {
-            "pn": "Phase 01",
-            "pt": "Capture",
-            "tools": [
-              {
-                "nm": "Task Miner",
-                "ico": "mine"
-              },
-              {
-                "nm": "Ontology Builder",
-                "ico": "onto"
-              }
-            ]
-          },
-          {
-            "pn": "Phase 02",
-            "pt": "Diagnose",
-            "tools": [
-              {
-                "nm": "Data Connectors",
-                "ico": "plug"
-              },
-              {
-                "nm": "Backtest / Benchmark",
-                "ico": "bench"
-              }
-            ]
-          },
-          {
-            "pn": "Phase 03",
-            "pt": "Enhance",
-            "tools": [
-              {
-                "nm": "Artifact Value Loops",
-                "ico": "loop"
-              },
-              {
-                "nm": "Active Worklist",
-                "ico": "list"
-              }
-            ]
-          },
-          {
-            "pn": "Phase 04",
-            "pt": "Reinvent",
-            "ghost": true,
-            "tools": [
-              {
-                "nm": "Self-improving Loops",
-                "ico": "inf",
-                "ghost": true
-              },
-              {
-                "nm": "Artifact Value Loops",
-                "ico": "loop",
-                "ghost": true
-              }
-            ]
-          }
-        ]
-      },
-      "flows": [
-        "builders distill signal into the engine",
-        "the harness composes context from the engine"
-      ],
-      "arch_meta": {
-        "number": "02",
-        "name": "Context-Aware Agentic Architecture",
-        "note": "The harness that controls the AI"
-      },
-      "arch": [
-        {
-          "nm": "Custom Harnesses",
-          "ico": "harness"
-        },
-        {
-          "nm": "Smart Routing",
-          "ico": "route"
-        },
-        {
-          "nm": "Context Control",
-          "ico": "funnel"
-        },
-        {
-          "nm": "Artifactory Value Loops",
-          "ico": "socket"
-        }
-      ],
-      "engine": {
-        "number": "03",
-        "name": "The Intelligence Engine",
-        "note": "The moat",
-        "sub": [
-          {
-            "nm": "Domain Ontology",
-            "ico": "type"
-          },
-          {
-            "nm": "Information Graph",
-            "ico": "graph"
-          },
-          {
-            "nm": "Provenance Store",
-            "ico": "prov"
-          },
-          {
-            "nm": "Activity Layer",
-            "ico": "activity"
-          },
-          {
-            "nm": "Authorization Layer",
-            "ico": "lock"
-          }
-        ],
-        "prims_label": "The primitives we lead on",
-        "prims": [
-          {
-            "nm": "Decisions-as-graph",
-            "ico": "dec"
-          },
-          {
-            "nm": "Activities in the graph",
-            "ico": "activity"
-          },
-          {
-            "nm": "Bitemporal validity",
-            "ico": "clock"
-          },
-          {
-            "nm": "Engine-native RBAC",
-            "ico": "key"
-          }
-        ],
-        "caption": "everything traverses it · the surface is swappable, the engine is not"
-      }
+      "headline": "Three layers, one engine — from the inside out.",
+      "svg": "<svg class=\"pracsvg\" viewBox=\"0 0 900 760\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"-apple-system,Helvetica,Arial\"><defs><marker id=\"pin\" markerWidth=\"9\" markerHeight=\"9\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0 0L6 3L0 6z\" fill=\"#3F9D78\"/></marker><marker id=\"pinL\" markerWidth=\"9\" markerHeight=\"9\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0 0L6 3L0 6z\" fill=\"#9DAE16\"/></marker><radialGradient id=\"pcore\" cx=\"50%\" cy=\"42%\" r=\"62%\"><stop offset=\"0\" stop-color=\"#16352a\"/><stop offset=\"1\" stop-color=\"#0b1a14\"/></radialGradient></defs><!-- boundary + guide rings --><circle cx=\"450\" cy=\"375\" r=\"332\" fill=\"none\" stroke=\"#3F9D78\" stroke-width=\"1.4\" stroke-dasharray=\"8 6\" opacity=\".7\"/><!-- concentric layer bands --><circle cx=\"450\" cy=\"375\" r=\"268\" fill=\"none\" stroke=\"#8CC9AC\" stroke-width=\"64\" opacity=\".12\"/><circle cx=\"450\" cy=\"375\" r=\"165\" fill=\"none\" stroke=\"#C2D62E\" stroke-width=\"70\" opacity=\".10\"/><!-- service bus — orchestration backs every surface (not 1:1) --><circle cx=\"450\" cy=\"375\" r=\"216\" fill=\"none\" stroke=\"#8A887E\" stroke-width=\"1\" stroke-dasharray=\"2 5\" opacity=\".7\"/><!-- ontology ring wrapping the engine --><circle cx=\"450\" cy=\"375\" r=\"120\" fill=\"none\" stroke=\"#3F9D78\" stroke-width=\"26\" opacity=\".16\"/><circle cx=\"450\" cy=\"375\" r=\"120\" fill=\"none\" stroke=\"#3F9D78\" stroke-width=\"1.4\" stroke-dasharray=\"3 4\" opacity=\".6\"/><circle class=\"hot\" data-id=\"onto\" cx=\"450\" cy=\"375\" r=\"120\" fill=\"none\" stroke=\"transparent\" stroke-width=\"26\" pointer-events=\"stroke\"/><text x=\"556\" y=\"372\" font-family=\"ui-monospace,Menlo,monospace\" font-size=\"9\" font-weight=\"600\" fill=\"#3F9D78\">Ontology</text><text x=\"556\" y=\"383\" font-family=\"ui-monospace,Menlo,monospace\" font-size=\"6.8\" fill=\"#8A887E\">distill in · types</text><!-- orbiting data --><g opacity=\".75\"><g><circle cx=\"450\" cy=\"210\" r=\"4\" fill=\"#C2D62E\"/><circle cx=\"593\" cy=\"457\" r=\"3.5\" fill=\"#8CC9AC\"/><circle cx=\"307\" cy=\"457\" r=\"3.5\" fill=\"#5B8CF0\"/><animateTransform attributeName=\"transform\" type=\"rotate\" from=\"0 450 375\" to=\"360 450 375\" dur=\"58s\" repeatCount=\"indefinite\"/></g><g><circle cx=\"450\" cy=\"108\" r=\"4\" fill=\"#8CC9AC\"/><circle cx=\"681\" cy=\"508\" r=\"3.5\" fill=\"#C2D62E\"/><circle cx=\"219\" cy=\"508\" r=\"3\" fill=\"#8CC9AC\"/><animateTransform attributeName=\"transform\" type=\"rotate\" from=\"360 450 375\" to=\"0 450 375\" dur=\"82s\" repeatCount=\"indefinite\"/></g></g><!-- feeder arrows (under chips) --><g stroke=\"#3F9D78\" stroke-width=\"2\" fill=\"none\" stroke-dasharray=\"6 5\" marker-end=\"url(#pin)\"><line x1=\"450\" y1=\"70\" x2=\"450\" y2=\"289\"/><line x1=\"450\" y1=\"680\" x2=\"450\" y2=\"461\"/></g><text x=\"466\" y=\"158\" font-family=\"ui-monospace,Menlo,monospace\" font-size=\"8.5\" fill=\"#3F9D78\">distill in ↓</text><text x=\"466\" y=\"600\" font-family=\"ui-monospace,Menlo,monospace\" font-size=\"8.5\" fill=\"#3F9D78\">distill in ↑</text><!-- experience chips (mint) --><g class=\"hot\" data-id=\"bench\"><rect x=\"200\" y=\"166\" width=\"120\" height=\"40\" rx=\"9\" fill=\"#fff\" stroke=\"#E2E0D7\"/><rect x=\"200\" y=\"166\" width=\"120\" height=\"3.5\" rx=\"2\" fill=\"#8CC9AC\"/><text x=\"260\" y=\"187\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"600\" fill=\"#16160F\">Backtest</text><text x=\"260\" y=\"199\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#8A887E\">missed $</text></g><g class=\"hot\" data-id=\"work\"><rect x=\"580\" y=\"166\" width=\"120\" height=\"40\" rx=\"9\" fill=\"#fff\" stroke=\"#E2E0D7\"/><rect x=\"580\" y=\"166\" width=\"120\" height=\"3.5\" rx=\"2\" fill=\"#8CC9AC\"/><text x=\"640\" y=\"187\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"600\" fill=\"#16160F\">Worklist</text><text x=\"640\" y=\"199\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#8A887E\">ranked · live</text></g><g class=\"hot\" data-id=\"avl\"><rect x=\"200\" y=\"544\" width=\"120\" height=\"40\" rx=\"9\" fill=\"#fff\" stroke=\"#E2E0D7\"/><rect x=\"200\" y=\"544\" width=\"120\" height=\"3.5\" rx=\"2\" fill=\"#8CC9AC\"/><text x=\"260\" y=\"565\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"600\" fill=\"#16160F\">Artifact</text><text x=\"260\" y=\"577\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#8A887E\">value loop</text></g><g class=\"hot\" data-id=\"coach\"><rect x=\"580\" y=\"544\" width=\"120\" height=\"40\" rx=\"9\" fill=\"#fff\" stroke=\"#E2E0D7\"/><rect x=\"580\" y=\"544\" width=\"120\" height=\"3.5\" rx=\"2\" fill=\"#8CC9AC\"/><text x=\"640\" y=\"565\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"600\" fill=\"#16160F\">Coach</text><text x=\"640\" y=\"577\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#8A887E\">chat the graph</text></g><!-- orchestration chips (lime) --><g class=\"hot\" data-id=\"harness\"><rect x=\"273\" y=\"238\" width=\"120\" height=\"40\" rx=\"9\" fill=\"#fff\" stroke=\"#E2E0D7\"/><rect x=\"273\" y=\"238\" width=\"120\" height=\"3.5\" rx=\"2\" fill=\"#C2D62E\"/><text x=\"333\" y=\"259\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"600\" fill=\"#16160F\">Custom Harnesses</text><text x=\"333\" y=\"271\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#8A887E\">harnessed analyst</text></g><g class=\"hot\" data-id=\"route\"><rect x=\"507\" y=\"238\" width=\"120\" height=\"40\" rx=\"9\" fill=\"#fff\" stroke=\"#E2E0D7\"/><rect x=\"507\" y=\"238\" width=\"120\" height=\"3.5\" rx=\"2\" fill=\"#C2D62E\"/><text x=\"567\" y=\"259\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"600\" fill=\"#16160F\">Smart Routing</text><text x=\"567\" y=\"271\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#8A887E\">model + tool</text></g><g class=\"hot\" data-id=\"ctx\"><rect x=\"273\" y=\"472\" width=\"120\" height=\"40\" rx=\"9\" fill=\"#fff\" stroke=\"#E2E0D7\"/><rect x=\"273\" y=\"472\" width=\"120\" height=\"3.5\" rx=\"2\" fill=\"#C2D62E\"/><text x=\"333\" y=\"493\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"600\" fill=\"#16160F\">Context Control</text><text x=\"333\" y=\"505\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#8A887E\">scoped context</text></g><g class=\"hot\" data-id=\"artf\"><rect x=\"507\" y=\"472\" width=\"120\" height=\"40\" rx=\"9\" fill=\"#fff\" stroke=\"#E2E0D7\"/><rect x=\"507\" y=\"472\" width=\"120\" height=\"3.5\" rx=\"2\" fill=\"#C2D62E\"/><text x=\"567\" y=\"493\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"600\" fill=\"#16160F\">Artifactory</text><text x=\"567\" y=\"505\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#8A887E\">always-on loop</text></g><!-- core --><circle cx=\"450\" cy=\"375\" r=\"88\" fill=\"url(#pcore)\" stroke=\"#3F9D78\" stroke-width=\"2\"/><g opacity=\".55\" stroke=\"#8CC9AC\" stroke-width=\"1\"><line x1=\"425\" y1=\"335\" x2=\"455\" y2=\"328\"/><line x1=\"455\" y1=\"328\" x2=\"478\" y2=\"342\"/><line x1=\"425\" y1=\"335\" x2=\"445\" y2=\"352\"/></g><circle cx=\"425\" cy=\"335\" r=\"3.5\" fill=\"#5B8CF0\"/><circle cx=\"455\" cy=\"328\" r=\"3.5\" fill=\"#8CC9AC\"/><circle cx=\"478\" cy=\"342\" r=\"3.5\" fill=\"#C2D62E\"/><circle cx=\"445\" cy=\"352\" r=\"3\" fill=\"#3F9D78\"/><text x=\"450\" y=\"372\" text-anchor=\"middle\" font-family=\"ui-monospace,Menlo,monospace\" font-size=\"11\" letter-spacing=\"1.4\" fill=\"#fff\" font-weight=\"700\">INTELLIGENCE</text><text x=\"450\" y=\"388\" text-anchor=\"middle\" font-family=\"ui-monospace,Menlo,monospace\" font-size=\"11\" letter-spacing=\"1.4\" fill=\"#fff\" font-weight=\"700\">ENGINE</text><text x=\"450\" y=\"406\" text-anchor=\"middle\" font-family=\"ui-monospace,Menlo,monospace\" font-size=\"7.5\" letter-spacing=\"1\" fill=\"#8CC9AC\">the graph · the moat</text><circle class=\"hot\" data-id=\"engine\" cx=\"450\" cy=\"375\" r=\"88\" fill=\"transparent\"/><!-- feeders (builders, dark) --><g class=\"hot\" data-id=\"mine\"><rect x=\"375\" y=\"28\" width=\"150\" height=\"36\" rx=\"9\" fill=\"#141412\"/><text x=\"450\" y=\"46\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"600\" fill=\"#fff\">Task Miner</text><text x=\"450\" y=\"58\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#9C9A8E\">workflow → traces</text></g><g class=\"hot\" data-id=\"plug\"><rect x=\"375\" y=\"696\" width=\"150\" height=\"36\" rx=\"9\" fill=\"#141412\"/><text x=\"450\" y=\"714\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"600\" fill=\"#fff\">Data Connectors</text><text x=\"450\" y=\"726\" text-anchor=\"middle\" font-size=\"7\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#9C9A8E\">bi-temporal data</text></g><!-- ontology is now the ring wrapping the engine (drawn above) --><!-- feeders enter only top (Task Miner) and bottom (Data Connectors) --><!-- MCP gateway — sits with orchestration (by Smart Routing), interconnects OUT --><g class=\"hot\" data-id=\"mcp\"><rect x=\"606\" y=\"306\" width=\"94\" height=\"30\" rx=\"8\" fill=\"#fff\" stroke=\"#9DAE16\"/><text x=\"653\" y=\"320\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"600\" fill=\"#16160F\">MCP gateway</text><text x=\"653\" y=\"330\" text-anchor=\"middle\" font-size=\"6.8\" font-family=\"ui-monospace,Menlo,monospace\" fill=\"#8A887E\">interconnect out</text></g><path d=\"M702 321 H788\" stroke=\"#9DAE16\" stroke-width=\"1.6\" fill=\"none\" marker-end=\"url(#pinL)\"/><text x=\"845\" y=\"324\" text-anchor=\"middle\" font-family=\"ui-monospace,Menlo,monospace\" font-size=\"8.5\" fill=\"#9DAE16\">external tools</text><!-- legend --><g font-family=\"ui-monospace,Menlo,monospace\" font-size=\"9\" fill=\"#54534B\"><text x=\"20\" y=\"18\" font-size=\"9\" letter-spacing=\".12em\" fill=\"#8A887E\">LEGEND</text><circle cx=\"26\" cy=\"34\" r=\"6\" fill=\"#11261E\" stroke=\"#3F9D78\"/><text x=\"40\" y=\"37\">Intelligence Engine — core</text><rect x=\"20\" y=\"47\" width=\"12\" height=\"9\" rx=\"2\" fill=\"#fff\" stroke=\"#C2D62E\" stroke-width=\"2\"/><text x=\"40\" y=\"55\">Orchestration &amp; Inference</text><rect x=\"20\" y=\"63\" width=\"12\" height=\"9\" rx=\"2\" fill=\"#fff\" stroke=\"#8CC9AC\" stroke-width=\"2\"/><text x=\"40\" y=\"71\">Experience surfaces</text><rect x=\"20\" y=\"79\" width=\"12\" height=\"9\" rx=\"2\" fill=\"#141412\"/><text x=\"40\" y=\"87\">Builders distill in →</text><line x1=\"20\" y1=\"100\" x2=\"34\" y2=\"100\" stroke=\"#3F9D78\" stroke-dasharray=\"3 3\"/><text x=\"40\" y=\"103\">On-Prem boundary</text></g></svg>",
+      "callout": "the engine at the center · ontology types everything in · orchestration backs every surface · MCP interconnects out · nothing leaves the on-prem boundary"
     },
     {
       "id": "reinvent-engine",

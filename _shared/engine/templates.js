@@ -4,6 +4,36 @@
  * Templates use CSS classes defined in theme-found.css
  */
 
+// Journey rail — a compact echo of the wedge bar chart used as a "you are here"
+// motif on phase-intro slides. The active phase's bars light up; the rest dim,
+// and any ghost (future) phase renders as a dashed outline.
+function phaseJourneyRail(j) {
+  const steps = j.steps || [];
+  const total = steps.reduce((n, st) => n + (st.bars || 1), 0);
+  const minH = 24, maxH = 100;
+  let idx = 0;
+  const groups = steps.map((st, gi) => {
+    const active = gi === j.active;
+    const state = active ? 'is-active' : (st.ghost ? 'is-ghost' : 'is-dim');
+    let bars = '';
+    for (let k = 0; k < (st.bars || 1); k++) {
+      const h = total > 1 ? minH + (maxH - minH) * (idx / (total - 1)) : maxH;
+      idx++;
+      bars += `<span class="pj-bar ${state}" style="height:${h.toFixed(1)}%"></span>`;
+    }
+    return `
+      <div class="pj-group ${state}" style="flex:${st.bars || 1}">
+        <div class="pj-bars">${bars}</div>
+        <div class="pj-label">${st.phase}</div>
+      </div>`;
+  }).join('');
+  return `
+    <div class="phase-journey" data-animate>
+      ${j.caption ? `<div class="phase-journey-cap">${j.caption}</div>` : ''}
+      <div class="phase-journey-track">${groups}</div>
+    </div>`;
+}
+
 window.FoundTemplates = {
 
   // ── hero ─────────────────────────────────────────────
@@ -34,9 +64,11 @@ window.FoundTemplates = {
           <div class="phase-verb">${s.verb || ''}</div>
         </div>
         ${s.body ? `<p class="phase-body" data-animate>${s.body}</p>` : ''}
+        ${(s.layers || []).length ? `
         <div class="phase-stack-row" data-animate>
-          ${(s.layers || []).map(l => `<div class="layer-chip layer-chip--${l.id}">${l.label}</div>`).join('')}
-        </div>
+          ${s.layers.map(l => `<div class="layer-chip layer-chip--${l.id}">${l.label}</div>`).join('')}
+        </div>` : ''}
+        ${s.journey ? phaseJourneyRail(s.journey) : ''}
       </div>
     `;
   },

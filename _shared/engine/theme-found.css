@@ -397,6 +397,71 @@ body.deck-clean .deck-brand {
   justify-content: center;
 }
 
+/* Journey rail — "you are here" echo of the wedge chart on phase-intro slides */
+.phase-journey {
+  width: 100%;
+  max-width: 760px;
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.phase-journey-cap {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: rgba(240,237,230,0.3);
+  text-align: center;
+}
+.phase-journey-track {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+.pj-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.pj-bars {
+  height: 84px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+.pj-bar {
+  flex: 1;
+  min-width: 0;
+  border-radius: 4px 4px 0 0;
+  background: rgba(240,237,230,0.1);
+  transition: background var(--duration-base), box-shadow var(--duration-base);
+}
+.pj-bar.is-dim    { background: rgba(240,237,230,0.1); }
+.pj-bar.is-active {
+  background: var(--color-green);
+  box-shadow: 0 0 0 1px rgba(125,184,150,0.4), 0 6px 18px -6px rgba(125,184,150,0.55);
+}
+.pj-bar.is-ghost {
+  background: transparent;
+  border: 1px dashed var(--color-border-dark);
+}
+.pj-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(240,237,230,0.3);
+  border-top: 1px solid var(--color-border-dark);
+  padding-top: var(--space-2);
+}
+.pj-group.is-active .pj-label {
+  color: var(--color-green);
+  border-top-color: var(--color-green);
+}
+
 /* ── Template: Split ────────────────────────────────── */
 
 .slide-split {
